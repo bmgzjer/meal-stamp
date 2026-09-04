@@ -635,5 +635,28 @@ setInterval(()=>{renderToday()},60000);
 initDB().catch(()=>renderAll());renderAll();bootstrapCloud();
 })();
 </script>
+
+<script>
+/* 自动修复旧版本留下的空/损坏 Supabase 配置缓存。
+   正式项目配置已经内置在 src/cloud.js 中，不应再要求用户手动配置。 */
+(function () {
+  const key = 'meal_stamp_cloud_config_v1';
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return;
+    const saved = JSON.parse(raw);
+    const valid =
+      saved &&
+      typeof saved.url === 'string' &&
+      /^https:\/\/.+\.supabase\.co\/?$/i.test(saved.url.trim()) &&
+      typeof saved.key === 'string' &&
+      saved.key.trim().length >= 20;
+    if (!valid) localStorage.removeItem(key);
+  } catch (_) {
+    localStorage.removeItem(key);
+  }
+})();
+</script>
+
 </body>
 </html>
