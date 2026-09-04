@@ -171,8 +171,7 @@
 <div class="cloud-gate" id="cloudGate">
   <div class="gate-card">
     <div class="gate-logo">🍱☁️</div><h1>准时吃饭 · 云端同步</h1><p>APK 和浏览器会连接同一个情侣空间。照片先压缩，再上传到私密云端；断网时会先保存在本机，恢复网络后自动同步。</p>
-    <div data-gate-step="config" style="display:block"><div class="field"><label>Supabase Project URL</label><input class="input" id="supabaseUrl" placeholder="https://xxxx.supabase.co"></div><div class="field" style="margin-top:9px"><label>Publishable key</label><input class="input" id="supabaseKey" placeholder="sb_publishable_... / anon key"></div><div class="gate-actions"><button class="btn primary" id="saveCloudConfig">保存云端配置</button></div><div class="note" style="margin-top:10px">这两个值是客户端公开配置，不要填写 service_role / secret key。</div></div>
-    <div data-gate-step="auth" style="display:none"><div class="field"><label>邮箱</label><input class="input" id="authEmail" type="email" autocomplete="email" placeholder="you@example.com"></div><div class="field" style="margin-top:9px"><label>登录密码</label><input class="input" id="authPassword" type="password" autocomplete="current-password" placeholder="输入该账号密码"></div><div class="quick-account-title">快速选择用户</div><div class="quick-account-grid"><button class="quick-account" type="button" data-quick-account="admin"><b>👑 管理员</b><span>2603••••695@qq.com</span></button><button class="quick-account" type="button" data-quick-account="member"><b>🍚 打卡用户</b><span>9549••••196@qq.com</span></button></div><div class="gate-actions"><button class="btn primary" id="loginBtn">登录</button><button class="btn soft" id="signupBtn">第一次使用 · 注册</button><button class="btn soft" id="changeCloudConfig">修改 Supabase 配置</button></div></div>
+    <div data-gate-step="auth" style="display:block"><div class="field"><label>邮箱</label><input class="input" id="authEmail" type="email" autocomplete="email" placeholder="you@example.com"></div><div class="field" style="margin-top:9px"><label>登录密码</label><input class="input" id="authPassword" type="password" autocomplete="current-password" placeholder="输入该账号密码"></div><div class="quick-account-title">快速选择用户</div><div class="quick-account-grid"><button class="quick-account" type="button" data-quick-account="admin"><b>👑 管理员</b><span>2603••••695@qq.com</span></button><button class="quick-account" type="button" data-quick-account="member"><b>🍚 打卡用户</b><span>9549••••196@qq.com</span></button></div><div class="gate-actions"><button class="btn primary" id="loginBtn">登录</button></div></div>
     <div data-gate-step="space" style="display:none"><div class="field"><label>创建一个新的情侣空间</label><input class="input" id="spaceName" value="我们的打卡空间" maxlength="40"></div><button class="btn primary" id="createSpaceBtn" style="width:100%;margin-top:9px">我是管理员 · 创建空间</button><div class="gate-sep">或者</div><div class="field"><label>输入对象发来的邀请码</label><input class="input" id="inviteCode" maxlength="10" placeholder="10 位邀请码" style="text-transform:uppercase"></div><button class="btn yellow-btn" id="joinSpaceBtn" style="width:100%;margin-top:9px">我是对象 · 加入空间</button><button class="btn soft" id="gateSignOut" style="width:100%;margin-top:9px">退出账号</button></div>
     <div class="gate-msg" id="gateMsg"></div>
   </div>
@@ -279,19 +278,34 @@ const CONFIG_KEY = 'meal_stamp_cloud_config_v1';
 const ACTIVE_SPACE_KEY = 'meal_stamp_active_space_v1';
 const ROLE_KEY = 'meal_stamp_cached_role_v1';
 const SPACE_META_KEY = 'meal_stamp_cached_space_meta_v1';
+const SAVED_LOGINS_KEY = 'meal_stamp_saved_logins_v1';
+
+const DEFAULT_CLOUD_CONFIG = {
+  url: 'https://rtnfpdnvxfcdbneefhqt.supabase.co',
+  key: 'sb_publishable_jxz9pHBxwsLN2xBHjlZuXw_5a2ya2AZ'
+};
 
 const jsonGet = (key, fallback=null) => { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; } };
 const must = (data, error) => { if (error) throw error; return data; };
 
 class CloudBridge {
   constructor(){
-    this.config = jsonGet(CONFIG_KEY, null);
+    const savedConfig = jsonGet(CONFIG_KEY, null);
+    const validSaved = !!(
+      savedConfig &&
+      typeof savedConfig.url === 'string' &&
+      /^https:\/\/.+\.supabase\.co\/?$/i.test(savedConfig.url.trim()) &&
+      typeof savedConfig.key === 'string' &&
+      savedConfig.key.trim().length >= 20
+    );
+    this.config = validSaved ? savedConfig : {...DEFAULT_CLOUD_CONFIG};
+    localStorage.setItem(CONFIG_KEY, JSON.stringify(this.config));
     this.client = null;
     this.user = null;
     this.space = null;
     this.role = localStorage.getItem(ROLE_KEY) || '';
     this.channel = null;
-    if (this.config?.url && this.config?.key) this._createClient();
+    this._createClient();
   }
 
   _createClient(){
@@ -309,7 +323,7 @@ class CloudBridge {
     if (key.length < 20) throw new Error('Publishable key 看起来不完整');
     this.config={url,key}; localStorage.setItem(CONFIG_KEY,JSON.stringify(this.config)); this._createClient();
   }
-  clearConfig(){ localStorage.removeItem(CONFIG_KEY); localStorage.removeItem(ACTIVE_SPACE_KEY); localStorage.removeItem(ROLE_KEY); localStorage.removeItem(SPACE_META_KEY); this.config=null; this.client=null; this.user=null; this.space=null; this.role=''; }
+  clearConfig(){ localStorage.removeItem(CONFIG_KEY); localStorage.removeItem(ACTIVE_SPACE_KEY); localStorage.removeItem(ROLE_KEY); localStorage.removeItem(SPACE_META_KEY); this.config={...DEFAULT_CLOUD_CONFIG}; localStorage.setItem(CONFIG_KEY,JSON.stringify(this.config)); this.client=null; this.user=null; this.space=null; this.role=''; this._createClient(); }
 
   async getSession(){
     if(!this.client) return null;
@@ -317,7 +331,7 @@ class CloudBridge {
     this.user=data.session?.user||null; return data.session||null;
   }
   async signIn(email,password){ const {data,error}=await this.client.auth.signInWithPassword({email:email.trim(),password}); must(data,error); this.user=data.user; return data; }
-  async signUp(email,password){ const {data,error}=await this.client.auth.signUp({email:email.trim(),password}); must(data,error); this.user=data.user; return data; }
+  async signUp(){ throw new Error('注册功能已关闭，仅允许现有账号登录。'); }
   async signOut(){ if(this.channel) await this.client.removeChannel(this.channel).catch(()=>{}); await this.client.auth.signOut(); this.user=null; this.space=null; this.role=''; localStorage.removeItem(ACTIVE_SPACE_KEY); localStorage.removeItem(ROLE_KEY); localStorage.removeItem(SPACE_META_KEY); }
 
   async loadMembership(){
@@ -470,6 +484,20 @@ const QUICK_ACCOUNTS={
   admin:{label:'管理员',email:'2603329695@qq.com',masked:'2603••••695@qq.com'},
   member:{label:'打卡用户',email:'954914196@qq.com',masked:'9549••••196@qq.com'}
 };
+function savedLogins(){try{return JSON.parse(localStorage.getItem(SAVED_LOGINS_KEY))||{}}catch(e){return {}}}
+function saveLoginLocal(email,password){
+  email=String(email||'').trim().toLowerCase(); password=String(password||'');
+  if(!email||!password)return;
+  const all=savedLogins();
+  all[email]={email,password,savedAt:new Date().toISOString()};
+  localStorage.setItem(SAVED_LOGINS_KEY,JSON.stringify(all));
+}
+function getSavedLogin(email){
+  email=String(email||'').trim().toLowerCase();
+  const x=savedLogins()[email];
+  return x?.password?x:null;
+}
+
 const DEFAULT={settings:{targetDays:22,rewardEvery:15,demo:false,passwordHash:'',startDate:''},checkins:{},rewards:[{id:uid(),name:'奶茶一杯',enabled:true},{id:uid(),name:'按摩 20 分钟',enabled:true},{id:uid(),name:'指定一顿想吃的',enabled:true},{id:uid(),name:'免做一次家务',enabled:true}],rewardHistory:[],makeups:[],chores:[{id:uid(),name:'洗碗 + 收厨房',credit:1},{id:uid(),name:'扫地拖地',credit:1},{id:uid(),name:'整理衣物',credit:1},{id:uid(),name:'深度收纳一块区域',credit:2}],choreRequests:[]};
 let state=clone(DEFAULT); let galleryUrls=[]; let calCursor=new Date(); calCursor.setDate(1); let wheelDeg=0; let db;
 function uid(){return Math.random().toString(36).slice(2,9)+Date.now().toString(36).slice(-4)}
@@ -577,18 +605,48 @@ async function enterApp(){
 }
 function gateStep(name){$$('[data-gate-step]').forEach(x=>x.style.display=x.dataset.gateStep===name?'block':'none')}
 function gateMsg(msg,bad=false){let el=$('#gateMsg');el.textContent=msg;el.style.color=bad?'#B64655':'#55796C'}
-function setQuickAccount(key){let a=QUICK_ACCOUNTS[key];if(!a)return;$('#authEmail').value=a.email;$('#authPassword').value='';$$('[data-quick-account]').forEach(x=>x.classList.toggle('current',x.dataset.quickAccount===key));gateMsg(`已选择${a.label}，输入这个账号的登录密码即可。`);setTimeout(()=>$('#authPassword')?.focus(),60)}
-async function switchUser(key){let a=QUICK_ACCOUNTS[key];if(!a)return;try{await cloud.signOut()}catch(e){console.warn('signout before switch',e)}cloudReady=false;closeModal(true);$('#mainApp').style.display='none';$('#cloudGate').style.display='grid';gateStep('auth');setQuickAccount(key)}
-function openQuickSwitch(){let current=(cloud.user?.email||'').toLowerCase();modal(`<h3>⇄ 快速切换用户</h3><p>选择要切换的用户。为了不把密码写进网页，切换后只需要输入该账号密码。</p><div class="quick-account-grid"><button class="quick-account ${current===QUICK_ACCOUNTS.admin.email?'current':''}" type="button" data-switch-account="admin"><b>👑 管理员</b><span>${QUICK_ACCOUNTS.admin.masked}</span></button><button class="quick-account ${current===QUICK_ACCOUNTS.member.email?'current':''}" type="button" data-switch-account="member"><b>🍚 打卡用户</b><span>${QUICK_ACCOUNTS.member.masked}</span></button></div><div class="modal-actions"><button class="btn soft" data-close-modal>取消</button></div>`)}
+function setQuickAccount(key,autoLogin=false){
+  let a=QUICK_ACCOUNTS[key]; if(!a)return;
+  $('#authEmail').value=a.email;
+  const saved=getSavedLogin(a.email);
+  $('#authPassword').value=saved?.password||'';
+  $$('[data-quick-account]').forEach(x=>x.classList.toggle('current',x.dataset.quickAccount===key));
+  if(saved){
+    gateMsg(`已读取本机保存的${a.label}账号。`);
+    if(autoLogin)setTimeout(()=>$('#loginBtn')?.click(),80);
+  }else{
+    gateMsg(`首次使用${a.label}，输入一次密码即可永久保存在本机。`);
+    setTimeout(()=>$('#authPassword')?.focus(),60);
+  }
+}
+async function switchUser(key){
+  let a=QUICK_ACCOUNTS[key];if(!a)return;
+  try{await cloud.signOut()}catch(e){console.warn('signout before switch',e)}
+  cloudReady=false;closeModal(true);
+  $('#mainApp').style.display='none';$('#cloudGate').style.display='grid';
+  gateStep('auth');setQuickAccount(key,true);
+}
+function openQuickSwitch(){
+  let current=(cloud.user?.email||'').toLowerCase();
+  modal(`<h3>⇄ 快速切换用户</h3><p>第一次登录成功后会保存在当前设备。以后点用户即可直接切换。</p><div class="quick-account-grid"><button class="quick-account ${current===QUICK_ACCOUNTS.admin.email?'current':''}" type="button" data-switch-account="admin"><b>👑 管理员</b><span>${QUICK_ACCOUNTS.admin.masked}</span></button><button class="quick-account ${current===QUICK_ACCOUNTS.member.email?'current':''}" type="button" data-switch-account="member"><b>🍚 打卡用户</b><span>${QUICK_ACCOUNTS.member.masked}</span></button></div><div class="modal-actions"><button class="btn soft" data-close-modal>取消</button></div>`)
+}
 async function bootstrapCloud(){
   $('#mainApp').style.display='none'; $('#cloudGate').style.display='grid';
-  if(!cloud.hasConfig()){gateStep('config');return}
-  try{let session=await cloud.getSession();if(!session){gateStep('auth');return}let mem=await cloud.loadMembership();if(!mem){gateStep('space');return}await enterApp()}catch(e){console.error(e);let cached=cloud.getCachedSpace();if(cloud.user&&cached){cloud.space=cached;await enterApp();setSyncStatus('离线缓存中');return}gateMsg('连接失败：'+(e.message||'请检查网络与 Supabase 配置'),true);gateStep(cloud.user?'space':'auth')}
+  try{
+    let session=await cloud.getSession();
+    if(!session){gateStep('auth');return}
+    let mem=await cloud.loadMembership();
+    if(!mem){gateStep('space');return}
+    await enterApp();
+  }catch(e){
+    console.error(e);
+    let cached=cloud.getCachedSpace();
+    if(cloud.user&&cached){cloud.space=cached;await enterApp();setSyncStatus('离线缓存中');return}
+    gateMsg('连接失败：'+(e.message||'请检查网络'),true);
+    gateStep('auth');
+  }
 }
-$('#saveCloudConfig').onclick=()=>{try{cloud.setConfig($('#supabaseUrl').value,$('#supabaseKey').value);gateMsg('配置已保存，可以登录了');gateStep('auth')}catch(e){gateMsg(e.message,true)}};
-$('#changeCloudConfig').onclick=()=>gateStep('config');
-$('#loginBtn').onclick=async()=>{try{gateMsg('正在登录…');await cloud.signIn($('#authEmail').value,$('#authPassword').value);let mem=await cloud.loadMembership();if(mem)await enterApp();else gateStep('space')}catch(e){gateMsg(e.message||'登录失败',true)}};
-$('#signupBtn').onclick=async()=>{try{let d=await cloud.signUp($('#authEmail').value,$('#authPassword').value);if(d.session){let mem=await cloud.loadMembership();if(mem)await enterApp();else gateStep('space')}else gateMsg('注册成功。若项目开启了邮箱确认，请先去邮箱确认后再登录。')}catch(e){gateMsg(e.message||'注册失败',true)}};
+$('#loginBtn').onclick=async()=>{try{gateMsg('正在登录…');const email=$('#authEmail').value;const password=$('#authPassword').value;await cloud.signIn(email,password);saveLoginLocal(email,password);let mem=await cloud.loadMembership();if(mem)await enterApp();else gateStep('space')}catch(e){gateMsg(e.message||'登录失败',true)}};if(d.session){let mem=await cloud.loadMembership();if(mem)await enterApp();else gateStep('space')}else gateMsg('注册成功。若项目开启了邮箱确认，请先去邮箱确认后再登录。')}catch(e){gateMsg(e.message||'注册失败',true)}};
 $('#createSpaceBtn').onclick=async()=>{try{gateMsg('正在创建情侣空间…');await cloud.createSpace($('#spaceName').value);await enterApp()}catch(e){gateMsg(e.message||'创建失败',true)}};
 $('#joinSpaceBtn').onclick=async()=>{try{gateMsg('正在加入…');await cloud.joinSpace($('#inviteCode').value);await enterApp()}catch(e){gateMsg(e.message||'加入失败',true)}};
 $('#gateSignOut').onclick=async()=>{await cloud.signOut();gateStep('auth')};
@@ -607,7 +665,7 @@ $('#topLogout').onclick=async()=>{
   gateStep('auth');
   gateMsg('已退出登录。可以选择管理员或打卡用户快速登录。');
 };
-document.addEventListener('click',e=>{let q=e.target.closest('[data-quick-account]');if(q)setQuickAccount(q.dataset.quickAccount);let s=e.target.closest('[data-switch-account]');if(s)switchUser(s.dataset.switchAccount)});
+document.addEventListener('click',e=>{let q=e.target.closest('[data-quick-account]');if(q)setQuickAccount(q.dataset.quickAccount,true);let s=e.target.closest('[data-switch-account]');if(s)switchUser(s.dataset.switchAccount)});
 $('#cloudLogout').onclick=async()=>{await cloud.signOut();cloudReady=false;$('#mainApp').style.display='none';$('#cloudGate').style.display='grid';gateStep('auth');gateMsg('已退出当前账号，可以选择另一个用户登录。')};
 $('#cloudResetConfig').onclick=async()=>{await cloud.signOut().catch(()=>{});cloud.clearConfig();location.reload()};
 window.addEventListener('online',()=>{setSyncStatus('重新连接中…');syncNow();reloadFromCloud()}); window.addEventListener('offline',()=>setSyncStatus('离线缓存中'));
@@ -633,28 +691,6 @@ document.addEventListener('click',async e=>{if(e.target.id==='confirmReset'){if(
 $('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
 setInterval(()=>{renderToday()},60000);
 initDB().catch(()=>renderAll());renderAll();bootstrapCloud();
-})();
-</script>
-
-<script>
-/* 自动修复旧版本留下的空/损坏 Supabase 配置缓存。
-   正式项目配置已经内置在 src/cloud.js 中，不应再要求用户手动配置。 */
-(function () {
-  const key = 'meal_stamp_cloud_config_v1';
-  try {
-    const raw = localStorage.getItem(key);
-    if (!raw) return;
-    const saved = JSON.parse(raw);
-    const valid =
-      saved &&
-      typeof saved.url === 'string' &&
-      /^https:\/\/.+\.supabase\.co\/?$/i.test(saved.url.trim()) &&
-      typeof saved.key === 'string' &&
-      saved.key.trim().length >= 20;
-    if (!valid) localStorage.removeItem(key);
-  } catch (_) {
-    localStorage.removeItem(key);
-  }
 })();
 </script>
 
