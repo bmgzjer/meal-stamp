@@ -646,7 +646,7 @@ async function bootstrapCloud(){
     gateStep('auth');
   }
 }
-$('#loginBtn').onclick=async()=>{try{gateMsg('正在登录…');const email=$('#authEmail').value;const password=$('#authPassword').value;await cloud.signIn(email,password);saveLoginLocal(email,password);let mem=await cloud.loadMembership();if(mem)await enterApp();else gateStep('space')}catch(e){gateMsg(e.message||'登录失败',true)}};if(d.session){let mem=await cloud.loadMembership();if(mem)await enterApp();else gateStep('space')}else gateMsg('注册成功。若项目开启了邮箱确认，请先去邮箱确认后再登录。')}catch(e){gateMsg(e.message||'注册失败',true)}};
+$('#loginBtn').onclick=async()=>{try{gateMsg('正在登录…');const email=$('#authEmail').value;const password=$('#authPassword').value;await cloud.signIn(email,password);saveLoginLocal(email,password);let mem=await cloud.loadMembership();if(mem)await enterApp();else gateStep('space')}catch(e){gateMsg(e.message||'登录失败',true)}};
 $('#createSpaceBtn').onclick=async()=>{try{gateMsg('正在创建情侣空间…');await cloud.createSpace($('#spaceName').value);await enterApp()}catch(e){gateMsg(e.message||'创建失败',true)}};
 $('#joinSpaceBtn').onclick=async()=>{try{gateMsg('正在加入…');await cloud.joinSpace($('#inviteCode').value);await enterApp()}catch(e){gateMsg(e.message||'加入失败',true)}};
 $('#gateSignOut').onclick=async()=>{await cloud.signOut();gateStep('auth')};
