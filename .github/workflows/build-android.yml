@@ -29,6 +29,9 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
+      - name: Install TypeScript
+        run: npm install -D typescript
+
       - name: Build web
         run: npm run build
 
