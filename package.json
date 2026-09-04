@@ -1,0 +1,24 @@
+{
+  "name": "meal-stamp-cloud",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "android:add": "npx cap add android",
+    "android:sync": "npm run build && npx cap sync android",
+    "android:open": "npx cap open android",
+    "android:apk": "npm run android:sync && cd android && ./gradlew assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.5.0",
+    "@capacitor/core": "8.5.1",
+    "@supabase/supabase-js": "2.112.4"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.5.1",
+    "vite": "8.2.2"
+  }
+}
