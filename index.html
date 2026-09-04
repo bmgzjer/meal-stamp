@@ -85,7 +85,7 @@
   .result{font-size:26px;font-weight:950;text-align:center;background:linear-gradient(135deg,#FFF1B6,#FFE4ED);border-radius:18px;padding:18px;margin:12px 0}
   .empty-state{border:1px dashed #E8D7DE;border-radius:16px;padding:18px;text-align:center;color:var(--muted);font-size:12px;background:#FFFCFD}
   .note{font-size:11px;color:var(--muted);line-height:1.65;padding:10px 12px;border-radius:14px;background:#FFF7D8;border:1px solid #F4E7AF}
-  .missing-list{display:grid;gap:9px}.missing-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(135deg,#FFFCFD,#FFF9E8)}.missing-main{display:flex;align-items:center;gap:10px;min-width:0}.missing-icon{width:42px;height:42px;flex:0 0 auto;display:grid;place-items:center;border-radius:14px;background:#FFF1C6;font-size:21px}.missing-item.dinner .missing-icon{background:#FFE7EF}.missing-copy b{font-size:13px}.missing-copy p{margin:3px 0 0;font-size:10px;color:var(--muted);line-height:1.45}.missing-item .btn{flex:0 0 auto}.locked-state{display:flex;gap:10px;align-items:center;padding:13px;border-radius:16px;background:var(--mint-2);border:1px solid #CFEBDD}.locked-state .lock-ico{font-size:25px}.locked-state b{display:block;font-size:13px}.locked-state span{font-size:10px;color:#55796C}.start-pill{font-weight:900;color:#745766;background:#FFF4F7;border:1px solid #F0DDE4;border-radius:999px;padding:8px 10px;font-size:11px;white-space:nowrap}
+  .missing-list{display:grid;gap:9px}.missing-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(135deg,#FFFCFD,#FFF9E8)}.missing-main{display:flex;align-items:center;gap:10px;min-width:0}.missing-icon{width:42px;height:42px;flex:0 0 auto;display:grid;place-items:center;border-radius:14px;background:#FFF1C6;font-size:21px}.missing-item.dinner .missing-icon{background:#FFE7EF}.missing-item.reading .missing-icon{background:var(--purple-2)}.missing-copy b{font-size:13px}.missing-copy p{margin:3px 0 0;font-size:10px;color:var(--muted);line-height:1.45}.missing-item .btn{flex:0 0 auto}.locked-state{display:flex;gap:10px;align-items:center;padding:13px;border-radius:16px;background:var(--mint-2);border:1px solid #CFEBDD}.locked-state .lock-ico{font-size:25px}.locked-state b{display:block;font-size:13px}.locked-state span{font-size:10px;color:#55796C}.start-pill{font-weight:900;color:#745766;background:#FFF4F7;border:1px solid #F0DDE4;border-radius:999px;padding:8px 10px;font-size:11px;white-space:nowrap}
   @media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:relative;top:auto}.nav{grid-template-columns:repeat(3,1fr)}.nav button{justify-content:center;padding:10px 6px;text-align:center}.nav button span:last-child{font-size:11px}.side-hero,.side-foot{display:none}.g4{grid-template-columns:repeat(2,1fr)}.reward-zone{grid-template-columns:1fr}}
   @media(max-width:620px){.app{padding:14px 10px 40px}.topbar{align-items:flex-start}.topbar>.pill{display:none}.brand h1{font-size:18px}.brand p{font-size:11px}.brand-mark{width:46px;height:46px}.sidebar{padding:8px;border-radius:20px}.nav{grid-template-columns:repeat(3,1fr);gap:4px}.nav button{flex-direction:column;gap:3px;border-radius:13px}.nav .ico{width:27px;height:27px}.hero{padding:19px;border-radius:24px}.hero h2{font-size:24px}.hero-art{font-size:46px}.g2,.g3,.g4,.form-grid,.chores{grid-template-columns:1fr}.calendar{gap:4px}.day{min-height:76px;padding:6px;border-radius:12px}.stamp{font-size:18px}.reward-zone{display:block}.cards{grid-template-columns:repeat(2,1fr)}.month-row{grid-template-columns:84px 1fr}.month-row>span:last-child{grid-column:2}.section-title{margin-top:17px}}
 
@@ -172,11 +172,20 @@
   /* 日历选择 + 当日详情 */
   .day[data-cal-day]{cursor:pointer;text-align:left;color:inherit;font:inherit;transition:.16s}.day[data-cal-day]:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(114,72,87,.08)}.day.selected{box-shadow:inset 0 0 0 2px var(--purple),0 8px 20px rgba(114,72,87,.10);background:#F8F5FF}.day .chore-badge{position:absolute;right:7px;top:7px;font-size:14px}
   .day-detail-card{padding:16px}.day-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.day-meal-detail{border:1px solid var(--line);border-radius:18px;background:#FFFCFD;overflow:hidden;min-height:170px}.day-meal-head{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:11px 12px}.day-meal-photo{aspect-ratio:16/9;background:#F8F0F3;display:grid;place-items:center;color:var(--muted);font-size:12px;overflow:hidden}.day-meal-photo img{width:100%;height:100%;display:block;object-fit:cover}.day-detail-extra{margin-top:12px;padding:11px 12px;border-radius:15px;background:var(--mint-2);font-size:12px;color:#4D7E6D;line-height:1.6}
-  /* 自定义家务补卡日期选择器 */
-  .date-picker-field{position:relative}.date-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;text-align:left;background:#FFFEFA;min-height:43px}.date-trigger .date-placeholder{color:var(--muted)}
-  .date-picker-pop{position:absolute;left:0;top:calc(100% + 8px);z-index:30;width:min(330px,calc(100vw - 40px));padding:12px;background:#FFFEFA;border:1px solid var(--line);border-radius:20px;box-shadow:0 18px 48px rgba(92,61,74,.18)}
-  .date-picker-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}.date-picker-head b{font-size:14px}.picker-nav{width:34px;height:34px;border:1px solid var(--line);background:white;border-radius:11px;font-weight:900}.picker-nav:disabled{opacity:.35;cursor:not-allowed}
-  .picker-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.picker-dow{text-align:center;font-size:9px;color:var(--muted);padding:3px 0}.picker-day{height:34px;border:0;border-radius:10px;background:transparent;font-size:11px;font-weight:800}.picker-day:hover:not(:disabled){background:var(--pink-3)}.picker-day.today{box-shadow:inset 0 0 0 1px var(--pink)}.picker-day.selected{background:linear-gradient(135deg,var(--pink),#FFB1C8);color:white}.picker-day:disabled{opacity:.25;cursor:not-allowed}.picker-empty{height:34px}
+  /* 家务补卡日期选择器：使用全尺寸弹窗，不再被卡片裁切 */
+  .date-picker-field{position:relative}.date-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;text-align:left;background:#FFFEFA;min-height:46px}.date-trigger .date-placeholder{color:var(--muted)}
+  .date-modal-shell{width:min(520px,92vw)}
+  .date-modal-toolbar{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+  .date-modal-toolbar select{width:100%;min-height:44px}
+  .date-modal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-top:10px}
+  .date-modal-dow{text-align:center;font-size:11px;color:var(--muted);padding:5px 0;font-weight:800}
+  .date-modal-day{aspect-ratio:1;min-height:42px;border:1px solid transparent;border-radius:13px;background:#FFFCFD;font-size:13px;font-weight:900;transition:.15s}
+  .date-modal-day:hover:not(:disabled){background:var(--pink-3);border-color:#F3D8E2;transform:translateY(-1px)}
+  .date-modal-day.today{box-shadow:inset 0 0 0 2px var(--yellow)}
+  .date-modal-day.selected{background:linear-gradient(135deg,var(--pink),#FFB1C8);color:white;box-shadow:0 6px 14px rgba(255,143,179,.22)}
+  .date-modal-day:disabled{opacity:.22;cursor:not-allowed}.date-modal-empty{aspect-ratio:1}
+  .reading-dot{background:#9D8BEA}.day .dots{flex-wrap:wrap}
+  @media(max-width:520px){.date-modal-day{min-height:38px;border-radius:11px}.date-modal-grid{gap:4px}.date-modal-toolbar{grid-template-columns:1fr 1fr}}
   @media(max-width:760px){.reading-form{grid-template-columns:1fr 1fr}.reading-form .book-field{grid-column:1/-1}.reading-form .reading-submit{grid-column:1/-1}.day-detail-grid{grid-template-columns:1fr}}
 
 </style>
@@ -204,7 +213,7 @@
   </header>
   <div class="layout">
     <aside class="sidebar">
-      <div class="side-hero"><b>今日小目标</b><p>午餐 + 晚餐都打卡，就能盖下一枚完整印章。</p><span class="mini-sticker">🐰</span></div>
+      <div class="side-hero"><b>今日小目标</b><p>午餐 + 晚餐 + 阅读都完成，才能盖下一枚完整印章。</p><span class="mini-sticker">🐰</span></div>
       <nav class="nav" id="nav">
         <button class="active" data-page="today"><span class="ico">🍚</span><span>今日打卡</span></button>
         <button data-page="calendar"><span class="ico">🌼</span><span>集章月历</span></button>
@@ -218,21 +227,21 @@
 
     <main class="main">
       <section class="page active" id="page-today">
-        <div class="hero"><div class="hero-row"><div><div class="eyebrow">TODAY'S CHECK-IN</div><h2 id="greeting">今天也要好好吃饭呀 ✨</h2><p>午餐在 12:00–14:00、晚餐在 17:00–23:59 上传照片。两餐都完成后，当天才会计为 1 个完整集章日。</p></div><div class="hero-art">🍓🥪</div></div></div>
+        <div class="hero"><div class="hero-row"><div><div class="eyebrow">TODAY'S CHECK-IN</div><h2 id="greeting">今天也要好好吃饭呀 ✨</h2><p>午餐在 12:00–14:00、晚餐在 17:00–23:59 上传照片；阅读打卡全天 00:00–23:59 都可完成。午餐、晚餐、阅读三项齐全后，当天才计为 1 个完整集章日。</p></div><div class="hero-art">🍓🥪</div></div></div>
         <div class="grid g4">
           <div class="card stat pink"><small>本月完整打卡</small><div class="num" id="statMonthDays">0</div><small>/ 22 天月目标</small><div class="blob"></div></div>
           <div class="card stat yellow"><small>可用奖励次数</small><div class="num" id="statRewardTurns">0</div><small>每 15 个有效章 = 1 次</small><div class="blob"></div></div>
           <div class="card stat mint"><small>连续完整打卡</small><div class="num" id="statStreak">0</div><small>天 · 继续保持</small><div class="blob"></div></div>
           <div class="card stat purple"><small>待我确认</small><div class="num" id="statPending">0</div><small>补签 / 家务申请</small><div class="blob"></div></div>
         </div>
-        <div class="section-title"><div><h2>今天的两餐</h2><p id="todayText">完成两次上传即可盖章</p></div><span class="pill" id="dayStatusPill">今日 0 / 2</span></div>
+        <div class="section-title"><div><h2>今天的打卡</h2><p id="todayText">午餐 + 晚餐 + 阅读，三项完成即可盖章</p></div><span class="pill" id="dayStatusPill">今日 0 / 3</span></div>
         <div class="grid g2">
           <div class="card meal-card lunch" id="meal-lunch"><div class="meal-head"><div class="meal-title"><div class="meal-icon">☀️</div><div><h3>午餐打卡</h3><div class="sub" style="margin:2px 0 0">12:00 — 14:00</div></div></div><span class="status" id="lunchStatus">未开始</span></div><div class="upload" id="upload-lunch"><input type="file" accept="image/*" id="file-lunch" aria-label="选择午餐照片"><div class="empty"><div class="big">📷</div><b>上传一张午餐照片</b><span>点击或拖入图片 · 自动压缩</span><div style="margin-top:10px"><button class="btn yellow-btn" data-upload="lunch">选择照片</button></div></div></div></div>
           <div class="card meal-card dinner" id="meal-dinner"><div class="meal-head"><div class="meal-title"><div class="meal-icon">🌙</div><div><h3>晚餐打卡</h3><div class="sub" style="margin:2px 0 0">17:00 — 23:59</div></div></div><span class="status" id="dinnerStatus">未开始</span></div><div class="upload" id="upload-dinner"><input type="file" accept="image/*" id="file-dinner" aria-label="选择晚餐照片"><div class="empty"><div class="big">📸</div><b>上传一张晚餐照片</b><span>点击或拖入图片 · 自动压缩</span><div style="margin-top:10px"><button class="btn primary" data-upload="dinner">选择照片</button></div></div></div></div>
         </div>
-        <div class="section-title"><div><h2>今天的阅读</h2><p>阅读不需要上传照片，选择书本并记录页码即可</p></div><span class="pill" id="readingCountPill">今日 0 条</span></div>
+        <div class="section-title"><div><h2>今天的阅读</h2><p>全天 00:00–23:59 可完成 · 不需要上传照片，选择书本并记录页码即可</p></div><span class="pill" id="readingCountPill">今日 0 条</span></div>
         <div class="card reading-card">
-          <div class="inline" style="justify-content:space-between;align-items:flex-start"><div><h3>📚 看书打卡</h3><div class="sub" style="margin:3px 0 0">管理员维护书单；打卡用户选择书本并填写阅读页码。</div></div><button class="btn purple-btn soft" id="addBookBtn" type="button">＋ 添加书本</button></div>
+          <div class="inline" style="justify-content:space-between;align-items:flex-start"><div><h3>📚 看书打卡</h3><div class="sub" style="margin:3px 0 0">管理员维护书单；打卡用户全天都可以选择书本并填写阅读页码。当天至少 1 条阅读记录才算完成阅读项。</div></div><button class="btn purple-btn soft" id="addBookBtn" type="button">＋ 添加书本</button></div>
           <div id="readingAdminPanel" style="display:none"><div class="role-only-note" style="margin-top:12px">管理员只负责添加书本。阅读记录请切换到打卡用户后填写。</div><div class="book-chips" id="bookChips"></div></div>
           <div id="readingMemberPanel">
             <div class="reading-form">
@@ -244,20 +253,20 @@
           </div>
           <div class="reading-list" id="todayReadingList"></div>
         </div>
-        <div class="stamp-banner"><div class="inline"><div class="stamp-big" id="todayStamp">🌱</div><div><b id="todayStampTitle">今天的印章还在等你</b><span id="todayStampDesc">完成午餐和晚餐打卡后，就会变成完整印章 🌼</span></div></div><button class="btn soft" id="goMakeupBtn">忘记打卡？去补签</button></div>
+        <div class="stamp-banner"><div class="inline"><div class="stamp-big" id="todayStamp">🌱</div><div><b id="todayStampTitle">今天的印章还在等你</b><span id="todayStampDesc">完成午餐、晚餐和阅读三项后，就会变成完整印章 🌼</span></div></div><button class="btn soft" id="goMakeupBtn">忘记打卡？去补签</button></div>
       </section>
 
       <section class="page" id="page-calendar">
-        <div class="hero"><div class="hero-row"><div><div class="eyebrow">STAMP CALENDAR</div><h2>每一天都有一朵小花 🌼</h2><p>完整打卡日会盖章；补签完成也会标记来源。过去月份如果最终不足 22 天，会显示为失效，可使用家务补卡进行补救。</p></div><div class="hero-art">🌼🧸</div></div></div>
+        <div class="hero"><div class="hero-row"><div><div class="eyebrow">STAMP CALENDAR</div><h2>每一天都有一朵小花 🌼</h2><p>午餐、晚餐、阅读三项都完成才会盖章；餐次或阅读补签通过后会标记来源。过去月份如果最终不足 22 天，会显示为失效，可使用家务补卡进行补救。</p></div><div class="hero-art">🌼🧸</div></div></div>
         <div class="grid g3" style="margin-bottom:16px">
           <div class="card stat pink"><small>当前查看月份</small><div class="num" style="font-size:25px" id="calMonthStat">—</div><small id="calMonthStatus">进行中</small><div class="blob"></div></div>
           <div class="card stat yellow"><small>完整打卡 / 目标</small><div class="num" id="calDaysStat">0 / 22</div><div class="progress"><i id="calProgress"></i></div><small id="calGapText">还差 22 天</small><div class="blob"></div></div>
           <div class="card stat mint"><small>家务补卡折抵</small><div class="num" id="calChoreStat">0</div><small>已审核通过的补卡天数</small><div class="blob"></div></div>
         </div>
-        <div class="card"><div class="monthbar"><div><h3 id="monthTitle">—</h3><div class="sub" style="margin:3px 0 0">绿色圆点 = 准时上传 · 紫色圆点 = 补签</div></div><div class="monthnav"><button class="circle" id="prevMonth">‹</button><button class="circle" id="thisMonth">今</button><button class="circle" id="nextMonth">›</button></div></div><div class="calendar" id="calendarGrid"></div><div class="legend"><span><i class="a"></i>正常打卡</span><span><i class="b"></i>补签通过</span><span><i class="c"></i>未完成</span><span>🌼 完整集章日</span></div></div>
+        <div class="card"><div class="monthbar"><div><h3 id="monthTitle">—</h3><div class="sub" style="margin:3px 0 0">三个圆点依次代表 午餐 / 晚餐 / 阅读 · 绿色 = 正常 · 紫色 = 补签</div></div><div class="monthnav"><button class="circle" id="prevMonth">‹</button><button class="circle" id="thisMonth">今</button><button class="circle" id="nextMonth">›</button></div></div><div class="calendar" id="calendarGrid"></div><div class="legend"><span><i class="a"></i>正常打卡</span><span><i class="b"></i>补签通过</span><span><i class="c"></i>未完成</span><span>●●● = 午 / 晚 / 读</span><span>🌼 三项齐全</span></div></div>
         <div class="section-title"><div><h2>月份结算</h2><p>月底自动判断；历史月份不足 22 天会失效</p></div></div><div class="card month-status" id="monthHistory"></div>
         <div id="selectedDayWrap" style="display:none">
-          <div class="section-title"><div><h2 id="selectedDayTitle">当日吃了什么</h2><p>只有点击某一天后，才会从云端读取这一天的照片并写入本机缓存</p></div><span class="pill" id="selectedDayPill">—</span></div>
+          <div class="section-title"><div><h2 id="selectedDayTitle">当日打卡详情</h2><p>只有点击某一天后，才会从云端读取这一天的照片并写入本机缓存</p></div><span class="pill" id="selectedDayPill">—</span></div>
           <div class="card day-detail-card" id="selectedDayDetail"></div>
         </div>
         <div class="section-title"><div><h2>最近打卡照片</h2><p>只显示已经在本机缓存的照片 · 点击上方日历日期后才会下载对应照片</p></div></div><div class="photo-gallery" id="photoGallery"><div class="empty-state">还没有本机缓存照片</div></div>
@@ -278,16 +287,16 @@
       </section>
 
       <section class="page" id="page-makeup">
-        <div class="hero"><div class="hero-row"><div><div class="eyebrow">MAKE-UP REQUEST</div><h2>漏掉的打卡，系统帮你找出来 📝</h2><p>从首次绑定的起始日期开始，网页会自动识别已经错过时间窗、但没有记录的餐次。TA 只需要点击对应日期并确认申请，你再用管理密码审核即可。</p></div><div class="hero-art">📝💗</div></div></div>
-        <div class="grid g2"><div class="card"><div class="inline" style="justify-content:space-between;margin-bottom:5px"><h3>待补签日期</h3><span class="start-pill" id="makeupStartDate">起始日期 —</span></div><div class="sub">只显示真正已经错过打卡时间的餐次；今天尚未结束的时间窗不会提前算漏打。</div><div class="missing-list" id="missingMakeupList"></div></div>
-        <div class="card"><h3>审核规则</h3><div class="sub">申请不会直接生效。通过后，对应餐次会显示为紫色「补签」，两餐齐全时当天重新计为完整集章日。</div><div class="note">🔐 审核必须验证管理密码。比如 9 月 4 日午餐在 14:00 后仍无记录，就会自动出现在左侧待补清单。</div><div style="margin-top:14px" class="inline"><span class="pill" id="pendingMakeupCount">0 个待审核补签</span><button class="btn dark" id="reviewMakeupBtn">进入审核</button></div></div></div>
+        <div class="hero"><div class="hero-row"><div><div class="eyebrow">MAKE-UP REQUEST</div><h2>漏掉的打卡，系统帮你找出来 📝</h2><p>从首次绑定的起始日期开始，网页会自动识别已经错过时间窗但没有记录的午餐、晚餐，也会在第二天识别前一天没有完成的阅读。TA 提交申请后，再由管理员审核。</p></div><div class="hero-art">📝💗</div></div></div>
+        <div class="grid g2"><div class="card"><div class="inline" style="justify-content:space-between;margin-bottom:5px"><h3>待补签日期</h3><span class="start-pill" id="makeupStartDate">起始日期 —</span></div><div class="sub">午餐 / 晚餐按各自时间窗判断；阅读全天都可完成，只有到了第二天才会出现前一天的阅读补签。</div><div class="missing-list" id="missingMakeupList"></div></div>
+        <div class="card"><h3>审核规则</h3><div class="sub">申请不会直接生效。通过后，对应餐次或阅读会显示为紫色「补签」；午餐、晚餐、阅读三项齐全后，当天重新计为完整集章日。</div><div class="note">🔐 审核必须验证管理密码。比如 9 月 4 日午餐在 14:00 后仍无记录，就会自动出现在左侧待补清单。</div><div style="margin-top:14px" class="inline"><span class="pill" id="pendingMakeupCount">0 个待审核补签</span><button class="btn dark" id="reviewMakeupBtn">进入审核</button></div></div></div>
         <div class="section-title"><div><h2>补签申请</h2><p>等待 / 已通过 / 已拒绝</p></div></div><div class="card request" id="makeupList"></div>
       </section>
 
       <section class="page" id="page-chores">
         <div class="hero"><div class="hero-row"><div><div class="eyebrow">CHORES RESET</div><h2>这个月没达标？用家务补救 🧹</h2><p>历史月份如果少于 22 个完整打卡日，会进入「失效」状态。完成并审核通过的家务，可以按设定的折抵天数补回缺口。</p></div><div class="hero-art">🧹🫧</div></div></div>
         <div class="grid g2"><div class="card"><h3>家务清单</h3><div class="sub">可以自由添加家务，并设置每次能折抵多少天。</div><div class="inline" style="margin-bottom:10px"><input class="input" id="choreName" placeholder="例如：洗碗 + 收厨房" style="flex:1"><input class="input" id="choreCredit" type="number" min="1" max="7" value="1" style="width:86px"><button class="btn yellow-btn" id="addChore">添加</button></div><div class="chores" id="choreList"></div></div>
-        <div class="card"><h3 id="choreActionTitle">提交家务补卡</h3><div class="sub" id="choreActionSub">从 2026 年 9 月 4 日开始，选择一个具体日期和已完成的家务。提交后等待管理员审核。</div><div id="choreSubmitSection"><div class="form-grid"><div class="field date-picker-field"><label>补救日期</label><button class="input date-trigger" id="choreDateBtn" type="button"><span id="choreDateText" class="date-placeholder">选择月份和日期</span><span>📅</span></button><input id="choreDate" type="hidden"><div class="date-picker-pop" id="choreDatePicker" style="display:none"><div class="date-picker-head"><button class="picker-nav" id="chorePrevMonth" type="button">‹</button><b id="chorePickerTitle">—</b><button class="picker-nav" id="choreNextMonth" type="button">›</button></div><div class="picker-grid" id="chorePickerGrid"></div></div></div><div class="field"><label>已完成家务</label><select id="choreSelect"></select></div></div><div class="field" style="margin-top:10px"><label>备注</label><textarea id="choreNote" placeholder="例如：9 月 4 日漏打，用今天完成的家务来补救～"></textarea></div><button class="btn primary" id="submitChore" style="margin-top:10px">提交补卡申请</button></div><div id="choreReviewSection" style="display:none"><div class="role-only-note">管理员只负责审核对象提交的家务补卡，不会再出现“管理员自己提交家务申请”的入口。</div><div class="inline" style="margin-top:12px"><span class="pill" id="pendingChoreCount">0 个待审核家务</span><button class="btn dark" id="reviewChoreBtn">审核家务</button></div></div></div></div>
+        <div class="card"><h3 id="choreActionTitle">提交家务补卡</h3><div class="sub" id="choreActionSub">从 2026 年 9 月 4 日开始，选择一个具体日期和已完成的家务。提交后等待管理员审核。</div><div id="choreSubmitSection"><div class="form-grid"><div class="field date-picker-field"><label>补救日期</label><button class="input date-trigger" id="choreDateBtn" type="button"><span id="choreDateText" class="date-placeholder">选择具体日期</span><span>📅</span></button><input id="choreDate" type="hidden"></div><div class="field"><label>已完成家务</label><select id="choreSelect"></select></div></div><div class="field" style="margin-top:10px"><label>备注</label><textarea id="choreNote" placeholder="例如：9 月 4 日漏打，用今天完成的家务来补救～"></textarea></div><button class="btn primary" id="submitChore" style="margin-top:10px">提交补卡申请</button></div><div id="choreReviewSection" style="display:none"><div class="role-only-note">管理员只负责审核对象提交的家务补卡，不会再出现“管理员自己提交家务申请”的入口。</div><div class="inline" style="margin-top:12px"><span class="pill" id="pendingChoreCount">0 个待审核家务</span><button class="btn dark" id="reviewChoreBtn">审核家务</button></div></div></div></div>
         <div class="section-title"><div><h2>家务补卡记录</h2><p>通过后自动连接到所选具体日期和对应月份</p></div></div><div class="card request" id="choreRequests"></div>
       </section>
 
@@ -408,11 +417,11 @@ class CloudBridge {
     for(const r of checkins.data||[]){ const d=String(r.day); s.checkins[d]=s.checkins[d]||{}; s.checkins[d][r.meal]={status:r.status,time:r.checkin_time,photoId:r.photo_id||null,photoPath:r.photo_path||null,bytes:r.bytes||0}; }
     s.rewards=(rewards.data||[]).map(r=>({id:r.id,name:r.name,enabled:r.enabled}));
     s.rewardHistory=(draws.data||[]).map(r=>({id:r.id,reward:r.reward,time:r.drawn_at,mode:r.mode,test:r.is_test,completed:r.completed,completedAt:r.completed_at}));
-    s.makeups=(makeups.data||[]).map(r=>({id:r.id,date:String(r.day),meal:r.meal,reason:r.reason,auto:r.auto_detected,status:r.status,time:r.requested_at,reviewedAt:r.reviewed_at}));
+    s.makeups=(makeups.data||[]).map(r=>({id:r.id,date:String(r.day),meal:r.meal,reason:r.reason,auto:r.auto_detected,status:r.status,time:r.requested_at,reviewedAt:r.reviewed_at,requestedBy:r.requested_by||'',bookId:r.book_id||'',bookName:r.book_name||'',pageFrom:r.page_from??null,pageTo:r.page_to??null}));
     s.chores=(chores.data||[]).map(r=>({id:r.id,name:r.name,credit:r.credit}));
     s.choreRequests=(choreReqs.data||[]).map(r=>({id:r.id,month:r.month,targetDate:r.target_date?String(r.target_date):'',choreId:r.chore_id,choreName:r.chore_name,credit:r.credit,note:r.note,status:r.status,time:r.requested_at,reviewedAt:r.reviewed_at}));
     s.books=(books.data||[]).map(r=>({id:r.id,name:r.name,createdAt:r.created_at}));
-    s.readings=(readings.data||[]).map(r=>({id:r.id,date:String(r.day),bookId:r.book_id||'',bookName:r.book_name,pageFrom:r.page_from,pageTo:r.page_to,time:r.created_at}));
+    s.readings=(readings.data||[]).map(r=>({id:r.id,date:String(r.day),bookId:r.book_id||'',bookName:r.book_name,pageFrom:r.page_from,pageTo:r.page_to,time:r.created_at,status:r.status||'onTime',userId:r.user_id||'',sourceRequestId:r.source_request_id||''}));
     return s;
   }
 
@@ -437,6 +446,14 @@ class CloudBridge {
         }
       }
       if(makeupCheckRows.length) ops.push(this.client.from('checkins').upsert(makeupCheckRows,{onConflict:'space_id,day,meal'}));
+
+      // 管理员只物化审核通过的阅读补签；普通阅读只能由对象账号写入。
+      const makeupReadingRows=(state.readings||[]).filter(x=>x.status==='makeup').map(x=>({
+        id:x.id,space_id:sid,day:x.date,book_id:x.bookId||null,book_name:x.bookName,
+        page_from:+x.pageFrom,page_to:+x.pageTo,created_at:x.time||new Date().toISOString(),
+        user_id:x.userId||uid,status:'makeup',source_request_id:x.sourceRequestId||null
+      }));
+      if(makeupReadingRows.length) ops.push(this.client.from('reading_entries').upsert(makeupReadingRows,{onConflict:'space_id,id'}));
 
       // 审核只能 UPDATE 已由对象提交的申请，绝不由管理员 INSERT / UPSERT 新申请。
       for(const x of state.makeups||[]){
@@ -470,11 +487,11 @@ class CloudBridge {
       ]);
       if(mr.error)throw mr.error; if(cr.error)throw cr.error;
       const haveM=new Set((mr.data||[]).map(x=>x.id)), haveC=new Set((cr.data||[]).map(x=>x.id));
-      const newM=(state.makeups||[]).filter(x=>x.status==='pending'&&!haveM.has(x.id)).map(x=>({id:x.id,space_id:sid,day:x.date,meal:x.meal,reason:x.reason||'',auto_detected:!!x.auto,status:'pending',requested_at:x.time,requested_by:uid}));
+      const newM=(state.makeups||[]).filter(x=>x.status==='pending'&&!haveM.has(x.id)).map(x=>({id:x.id,space_id:sid,day:x.date,meal:x.meal,reason:x.reason||'',auto_detected:!!x.auto,status:'pending',requested_at:x.time,requested_by:uid,book_id:x.meal==='reading'?(x.bookId||null):null,book_name:x.meal==='reading'?(x.bookName||null):null,page_from:x.meal==='reading'?(+x.pageFrom||null):null,page_to:x.meal==='reading'?(+x.pageTo||null):null}));
       const newC=(state.choreRequests||[]).filter(x=>x.status==='pending'&&!haveC.has(x.id)).map(x=>({id:x.id,space_id:sid,month:x.month,target_date:x.targetDate||null,chore_id:x.choreId||null,chore_name:x.choreName,credit:+x.credit||1,note:x.note||'',status:'pending',requested_at:x.time,requested_by:uid}));
       if(newM.length) ops.push(this.client.from('makeup_requests').insert(newM));
       if(newC.length) ops.push(this.client.from('chore_requests').insert(newC));
-      if(state.readings?.length) ops.push(this.client.from('reading_entries').upsert(state.readings.map(x=>({id:x.id,space_id:sid,day:x.date,book_id:x.bookId||null,book_name:x.bookName,page_from:+x.pageFrom,page_to:+x.pageTo,created_at:x.time,user_id:uid})),{onConflict:'space_id,id'}));
+      const ownReadings=(state.readings||[]).filter(x=>(x.status||'onTime')==='onTime'); if(ownReadings.length) ops.push(this.client.from('reading_entries').upsert(ownReadings.map(x=>({id:x.id,space_id:sid,day:x.date,book_id:x.bookId||null,book_name:x.bookName,page_from:+x.pageFrom,page_to:+x.pageTo,created_at:x.time,user_id:uid,status:'onTime',source_request_id:null})),{onConflict:'space_id,id'}));
     }
 
     const results=await Promise.all(ops);
@@ -557,14 +574,16 @@ function parseYmdLocal(s){let [y,m,d]=String(s).split('-').map(Number);return ne
 function addDaysLocal(s,n=1){let d=parseYmdLocal(s);d.setDate(d.getDate()+n);return ymd(d)}
 function getDay(s){return state.checkins[s]||{}}
 function mealDone(v){return !!(v&&v.status)}
-function fullDay(s){let d=getDay(s);return mealDone(d.lunch)&&mealDone(d.dinner)}
+function readingEntriesForDay(s){return (state.readings||[]).filter(x=>x.date===s)}
+function readingDone(s){return readingEntriesForDay(s).length>0}
+function fullDay(s){let d=getDay(s);return mealDone(d.lunch)&&mealDone(d.dinner)&&readingDone(s)}
 function getMonthDays(mon){return Object.keys(state.checkins).filter(k=>k.startsWith(mon)&&fullDay(k)).length}
 function choreMonthOf(x){return (x.targetDate||'').slice(0,7)||x.month||''}
 function approvedChoreCredit(mon){return state.choreRequests.filter(x=>choreMonthOf(x)===mon&&x.status==='approved').reduce((a,b)=>a+(+b.credit||0),0)}
 function approvedChoresForDay(day){return state.choreRequests.filter(x=>x.targetDate===day&&x.status==='approved')}
 function effectiveMonthDays(mon){return getMonthDays(mon)+approvedChoreCredit(mon)}
 function monthState(mon){let now=ym();let n=effectiveMonthDays(mon),target=+state.settings.targetDays;if(mon>now)return {status:'future',n}; if(mon===now)return {status:n>=target?'valid':'ongoing',n}; return {status:n>=target?'valid':'invalid',n}}
-function eligibleStampDays(){let months=new Set(Object.keys(state.checkins).map(k=>k.slice(0,7)));state.choreRequests.forEach(x=>{let m=choreMonthOf(x);if(m)months.add(m)});let cur=ym();months.add(cur);let sum=0; months.forEach(m=>{let ms=monthState(m); if(m===cur)sum+=getMonthDays(m); else if(ms.status==='valid')sum+=effectiveMonthDays(m)}); return sum}
+function eligibleStampDays(){let months=new Set(Object.keys(state.checkins).map(k=>k.slice(0,7)));(state.readings||[]).forEach(x=>{if(x.date)months.add(x.date.slice(0,7))});state.choreRequests.forEach(x=>{let m=choreMonthOf(x);if(m)months.add(m)});let cur=ym();months.add(cur);let sum=0; months.forEach(m=>{let ms=monthState(m); if(m===cur)sum+=getMonthDays(m); else if(ms.status==='valid')sum+=effectiveMonthDays(m)}); return sum}
 function claimed(){return state.rewardHistory.filter(x=>!x.test).length}
 function realRewardTurns(){return Math.max(0,Math.floor(eligibleStampDays()/(+state.settings.rewardEvery||15))-claimed())}
 function rewardTurns(){return state.settings.demo?Infinity:realRewardTurns()}
@@ -585,22 +604,35 @@ async function renderMeal(meal){let day=getDay(ymd()),v=day[meal],up=$('#upload-
 function attachUpload(meal){let up=$('#upload-'+meal),fi=$('#file-'+meal);if(!up||!fi)return;up.onclick=e=>{if(e.target.closest('button[data-upload]'))fi.click()};fi.onchange=()=>handleUpload(meal,fi.files[0]);['dragenter','dragover'].forEach(x=>up.addEventListener(x,e=>{e.preventDefault();up.classList.add('drag')}));['dragleave','drop'].forEach(x=>up.addEventListener(x,e=>{e.preventDefault();up.classList.remove('drag')}));up.addEventListener('drop',e=>handleUpload(meal,e.dataTransfer.files[0]))}
 
 function renderReading(){
-  const today=ymd(), entries=(state.readings||[]).filter(x=>x.date===today), admin=isAdmin();
-  $('#readingCountPill').textContent=`今日 ${entries.length} 条`;
+  const today=ymd(), entries=readingEntriesForDay(today), admin=isAdmin();
+  $('#readingCountPill').textContent=`今日 ${entries.length} 条${entries.length?' · 已完成':' · 未完成'}`;
   $('#addBookBtn').style.display=admin?'':'none';
   $('#readingAdminPanel').style.display=admin?'block':'none';
   $('#readingMemberPanel').style.display=admin?'none':'block';
   const books=state.books||[];
   const sel=$('#readingBook'); if(sel){sel.innerHTML=books.length?`<option value="">请选择书本</option>`+books.map(x=>`<option value="${x.id}">${esc(x.name)}</option>`).join(''):'<option value="">还没有书本，请让管理员先添加</option>';sel.disabled=!books.length}
   const chips=$('#bookChips'); if(chips)chips.innerHTML=books.length?books.map(x=>`<span class="book-chip">📖 ${esc(x.name)} <button type="button" data-del-book="${x.id}" title="删除书本" style="border:0;background:transparent;cursor:pointer;font-weight:900">×</button></span>`).join(''):'<span class="sub" style="margin:0">还没有书本，点右上角“添加书本”。</span>';
-  const list=$('#todayReadingList'); if(list)list.innerHTML=entries.length?entries.slice().reverse().map(x=>`<div class="reading-item"><div><b>📚 ${esc(x.bookName)}</b><small>第 ${x.pageFrom} 页 → 第 ${x.pageTo} 页 · ${new Date(x.time).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}</small></div>${admin?'':`<button class="btn danger" data-del-reading="${x.id}" style="padding:7px 9px">删除</button>`}</div>`).join(''):'<div class="empty-state">今天还没有阅读记录 📖</div>';
+  const list=$('#todayReadingList'); if(list)list.innerHTML=entries.length?entries.slice().reverse().map(x=>`<div class="reading-item"><div><b>📚 ${esc(x.bookName)} ${x.status==='makeup'?'<span class="tag approved" style="margin-left:6px">补签</span>':''}</b><small>第 ${x.pageFrom} 页 → 第 ${x.pageTo} 页 · ${new Date(x.time).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}</small></div>${admin||x.status==='makeup'?'':`<button class="btn danger" data-del-reading="${x.id}" style="padding:7px 9px">删除</button>`}</div>`).join(''):'<div class="empty-state">今天还没有阅读记录 📖 · 今天 23:59 前都可以完成</div>';
 }
-function renderToday(){let now=new Date(),day=getDay(ymd()),done=[mealDone(day.lunch),mealDone(day.dinner)].filter(Boolean).length;$('#clockPill').textContent=now.toLocaleString('zh-CN',{month:'long',day:'numeric',weekday:'short',hour:'2-digit',minute:'2-digit'});$('#todayText').textContent=`${monthLabel(ym(now))} · 完成两次上传即可盖章`;$('#dayStatusPill').textContent=`今日 ${done} / 2`;$('#statMonthDays').textContent=getMonthDays(ym());$('#statRewardTurns').textContent=state.settings.demo?'∞':realRewardTurns();$('#statStreak').textContent=streak();$('#statPending').textContent=state.makeups.filter(x=>x.status==='pending').length+state.choreRequests.filter(x=>x.status==='pending').length;let full=done===2;$('#todayStamp').textContent=full?'🌼':'🌱';$('#todayStampTitle').textContent=full?'今天的完整印章已盖好！':'今天的印章还在等你';$('#todayStampDesc').textContent=full?'午餐和晚餐都完成啦，今天计入 1 个完整集章日。':'完成午餐和晚餐打卡后，就会变成完整印章 🌼';renderMeal('lunch');renderMeal('dinner');renderReading()}
+function renderToday(){
+  let now=new Date(),day=getDay(ymd()),mealCount=[mealDone(day.lunch),mealDone(day.dinner)].filter(Boolean).length,readDone=readingDone(ymd()),done=mealCount+(readDone?1:0);
+  $('#clockPill').textContent=now.toLocaleString('zh-CN',{month:'long',day:'numeric',weekday:'short',hour:'2-digit',minute:'2-digit'});
+  $('#todayText').textContent=`${monthLabel(ym(now))} · 午餐 + 晚餐 + 阅读三项齐全才盖章`;
+  $('#dayStatusPill').textContent=`今日 ${done} / 3`;
+  $('#statMonthDays').textContent=getMonthDays(ym());$('#statRewardTurns').textContent=state.settings.demo?'∞':realRewardTurns();$('#statStreak').textContent=streak();$('#statPending').textContent=state.makeups.filter(x=>x.status==='pending').length+state.choreRequests.filter(x=>x.status==='pending').length;
+  let full=done===3;$('#todayStamp').textContent=full?'🌼':'🌱';$('#todayStampTitle').textContent=full?'今天的完整印章已盖好！':'今天的印章还在等你';
+  $('#todayStampDesc').textContent=full?'午餐、晚餐和阅读都完成啦，今天计入 1 个完整集章日。':`还差 ${3-done} 项：午餐、晚餐、阅读三项都完成才会变成完整印章 🌼`;
+  renderMeal('lunch');renderMeal('dinner');renderReading();
+}
 function renderCalendar(){
   let mon=ym(calCursor),year=calCursor.getFullYear(),month=calCursor.getMonth(),first=new Date(year,month,1),days=new Date(year,month+1,0).getDate(),start=(first.getDay()+6)%7;
   $('#monthTitle').textContent=monthLabel(mon);$('#calMonthStat').textContent=`${month+1} 月`;let ms=monthState(mon),target=+state.settings.targetDays,n=getMonthDays(mon),credit=approvedChoreCredit(mon),eff=n+credit;$('#calDaysStat').textContent=`${eff} / ${target}`;$('#calProgress').style.width=Math.min(100,eff/target*100)+'%';$('#calGapText').textContent=eff>=target?'已达到月目标 🎉':`还差 ${target-eff} 天`;$('#calChoreStat').textContent=credit;let statusMap={valid:'本月有效',invalid:'本月失效',ongoing:'本月进行中',future:'未来月份'};$('#calMonthStatus').textContent=statusMap[ms.status];
   let html=['一','二','三','四','五','六','日'].map(x=>`<div class="dow">周${x}</div>`).join('');for(let i=0;i<start;i++)html+='<div class="day blank"></div>';
-  for(let d=1;d<=days;d++){let s=`${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`,v=getDay(s),l=v.lunch,r=v.dinner,full=fullDay(s),chores=approvedChoresForDay(s);let lc=l?.status==='makeup'?'makeup':l?.status?'ok':'',rc=r?.status==='makeup'?'makeup':r?.status?'ok':'';html+=`<button type="button" class="day ${s===ymd()?'today':''} ${selectedCalendarDay===s?'selected':''}" data-cal-day="${s}"><span class="n">${d}</span>${chores.length?'<span class="chore-badge" title="家务补卡已通过">🧹</span>':''}<div class="dots"><i class="dot ${lc}"></i><i class="dot ${rc}"></i></div>${full?'<span class="stamp">🌼</span>':''}<span class="mini">${full?'完整':chores.length?'家务补卡':'午 / 晚'}</span></button>`}
+  for(let d=1;d<=days;d++){
+    let s=`${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`,v=getDay(s),l=v.lunch,r=v.dinner,reads=readingEntriesForDay(s),read=reads[0],full=fullDay(s),chores=approvedChoresForDay(s);
+    let lc=l?.status==='makeup'?'makeup':l?.status?'ok':'',rc=r?.status==='makeup'?'makeup':r?.status?'ok':'',bc=read?.status==='makeup'?'makeup':read?'ok':'';
+    html+=`<button type="button" class="day ${s===ymd()?'today':''} ${selectedCalendarDay===s?'selected':''}" data-cal-day="${s}"><span class="n">${d}</span>${chores.length?'<span class="chore-badge" title="家务补卡已通过">🧹</span>':''}<div class="dots"><i class="dot ${lc}"></i><i class="dot ${rc}"></i><i class="dot ${bc}" title="阅读"></i></div>${full?'<span class="stamp">🌼</span>':''}<span class="mini">${full?'完整':chores.length?'家务补卡':'午 / 晚 / 读'}</span></button>`;
+  }
   $('#calendarGrid').innerHTML=html;renderMonthHistory();
   if(selectedCalendarDay && selectedCalendarDay.startsWith(mon)) $('#selectedDayWrap').style.display='block'; else $('#selectedDayWrap').style.display='none';
 }
@@ -615,10 +647,10 @@ async function loadDayPhoto(day,meal,x,hostId){
   const url=URL.createObjectURL(blob);selectedDayUrls.push(url);host.innerHTML=`<img src="${url}" alt="${day} ${meal==='lunch'?'午餐':'晚餐'}照片">`;
 }
 async function renderSelectedDayDetail(day){
-  selectedDayUrls.forEach(u=>URL.revokeObjectURL(u));selectedDayUrls=[];selectedCalendarDay=day;$('#selectedDayWrap').style.display='block';$('#selectedDayTitle').textContent=`${fmtDate(day)} · 当日吃了什么`;$('#selectedDayPill').textContent=fullDay(day)?'🌼 完整打卡':'当日详情';
+  selectedDayUrls.forEach(u=>URL.revokeObjectURL(u));selectedDayUrls=[];selectedCalendarDay=day;$('#selectedDayWrap').style.display='block';$('#selectedDayTitle').textContent=`${fmtDate(day)} · 当日打卡详情`;$('#selectedDayPill').textContent=fullDay(day)?'🌼 三项完整':'当日详情';
   const v=getDay(day), chores=approvedChoresForDay(day), readings=(state.readings||[]).filter(x=>x.date===day);
   const mealBlock=(meal,x)=>`<div class="day-meal-detail"><div class="day-meal-head"><div><b>${meal==='lunch'?'☀️ 午餐':'🌙 晚餐'}</b><div class="sub" style="margin:2px 0 0">${x?.status?`${statusLabel(x)} · ${x.time?new Date(x.time).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'}):''}`:'没有打卡记录'}</div></div><span class="status ${x?.status?'ok':''}">${x?.status?statusLabel(x):'未完成'}</span></div><div class="day-meal-photo" id="selected-${meal}-photo">${x?.photoId?'准备读取照片…':x?.status==='makeup'?'补签记录没有照片':'没有照片'}</div></div>`;
-  $('#selectedDayDetail').innerHTML=`<div class="day-detail-grid">${mealBlock('lunch',v.lunch)}${mealBlock('dinner',v.dinner)}</div>${chores.length?`<div class="day-detail-extra">🧹 家务补卡：${chores.map(x=>`${esc(x.choreName)}（折抵 ${x.credit} 天）`).join('、')}</div>`:''}${readings.length?`<div class="day-detail-extra">📚 当天阅读：${readings.map(x=>`${esc(x.bookName)} 第 ${x.pageFrom}–${x.pageTo} 页`).join('；')}</div>`:''}`;
+  $('#selectedDayDetail').innerHTML=`<div class="day-detail-grid">${mealBlock('lunch',v.lunch)}${mealBlock('dinner',v.dinner)}</div>${chores.length?`<div class="day-detail-extra">🧹 家务补卡：${chores.map(x=>`${esc(x.choreName)}（折抵 ${x.credit} 天）`).join('、')}</div>`:''}${readings.length?`<div class="day-detail-extra">📚 当天阅读：${readings.map(x=>`${esc(x.bookName)} 第 ${x.pageFrom}–${x.pageTo} 页${x.status==='makeup'?'（补签）':''}`).join('；')}</div>`:'<div class="day-detail-extra" style="background:#FFF4F7;color:#8D626D">📚 当天没有阅读记录</div>'}`;
   await Promise.all([loadDayPhoto(day,'lunch',v.lunch,'selected-lunch-photo'),loadDayPhoto(day,'dinner',v.dinner,'selected-dinner-photo')]);
   await renderPhotoGallery();renderCalendar();
 }
@@ -630,7 +662,7 @@ async function renderPhotoGallery(){
   box.innerHTML=items.map((it,i)=>{let u=URL.createObjectURL(it.blob);galleryUrls.push(u);return `<div class="gallery-item"><img src="${u}" alt="${it.day} ${it.meal==='lunch'?'午餐':'晚餐'}打卡照片"><div class="gallery-meta"><b>${fmtDate(it.day)} · ${it.meal==='lunch'?'午餐':'晚餐'}</b>${it.x.status==='makeup'?'补签':'准时打卡'}</div></div>`}).join('');
 }
 
-function renderMonthHistory(){let months=new Set([ym()]);Object.keys(state.checkins).forEach(k=>months.add(k.slice(0,7)));state.choreRequests.forEach(x=>{let m=choreMonthOf(x);if(m)months.add(m)});let arr=[...months].sort().reverse().slice(0,12);$('#monthHistory').innerHTML=arr.map(m=>{let raw=getMonthDays(m),credit=approvedChoreCredit(m),eff=raw+credit,ms=monthState(m),cl=ms.status==='valid'?'valid':ms.status==='invalid'?'invalid':'ongoing',tx=ms.status==='valid'?(credit?'补救有效':'有效'):ms.status==='invalid'?'失效':'进行中';return `<div class="month-row"><b>${monthLabel(m).replace(' 年 ','/').replace(' 月','')}</b><div><div class="bar"><i style="width:${Math.min(100,eff/state.settings.targetDays*100)}%"></i></div><small style="color:var(--muted)">${raw} 打卡${credit?` + ${credit} 家务`:''} / ${state.settings.targetDays}</small></div><span class="${cl}">${tx}</span></div>`}).join('')}
+function renderMonthHistory(){let months=new Set([ym()]);Object.keys(state.checkins).forEach(k=>months.add(k.slice(0,7)));(state.readings||[]).forEach(x=>{if(x.date)months.add(x.date.slice(0,7))});state.choreRequests.forEach(x=>{let m=choreMonthOf(x);if(m)months.add(m)});let arr=[...months].sort().reverse().slice(0,12);$('#monthHistory').innerHTML=arr.map(m=>{let raw=getMonthDays(m),credit=approvedChoreCredit(m),eff=raw+credit,ms=monthState(m),cl=ms.status==='valid'?'valid':ms.status==='invalid'?'invalid':'ongoing',tx=ms.status==='valid'?(credit?'补救有效':'有效'):ms.status==='invalid'?'失效':'进行中';return `<div class="month-row"><b>${monthLabel(m).replace(' 年 ','/').replace(' 月','')}</b><div><div class="bar"><i style="width:${Math.min(100,eff/state.settings.targetDays*100)}%"></i></div><small style="color:var(--muted)">${raw} 打卡${credit?` + ${credit} 家务`:''} / ${state.settings.targetDays}</small></div><span class="${cl}">${tx}</span></div>`}).join('')}
 function renderWheel(){let active=state.rewards.filter(x=>x.enabled),wheel=$('#wheel');if(!wheel)return;if(!active.length){wheel.style.background='#F3E8EC';wheel.innerHTML='';return}let colors=['#FFD85A','#FFB4CB','#BEE7D8','#C8BDF6','#FFE7A0','#FFCDD9','#CDEEDC','#D9D2FF','#FFD4A8','#F6C5E4','#BFE5F2','#D8E8AE'];let step=360/active.length,parts=active.map((r,i)=>`${colors[i%colors.length]} ${i*step}deg ${(i+1)*step}deg`);wheel.style.background=`conic-gradient(${parts.join(',')})`;let radius=active.length<=4?84:active.length<=8?91:active.length<=12?96:100;let cls=active.length>12?' very-dense':active.length>8?' dense':'';wheel.innerHTML=active.map((r,i)=>{let a=(i+.5)*step;return `<span class="wheel-label${cls}" style="transform:translate(-50%,-50%) rotate(${a}deg) translateY(-${radius}px) rotate(${-a}deg)">${esc(r.name)}</span>`}).join('')}
 function renderRewards(){let active=state.rewards.filter(x=>x.enabled),test=!!state.settings.demo;$('#rewardStampCount').textContent=eligibleStampDays();$('#claimedCount').textContent=claimed();$('#rewardTurns').textContent=test?'∞':realRewardTurns();$('#rewardPlayHint').textContent=test?'🧪 测试模式：抽奖和翻牌不限次数，测试结果不消耗正式奖励':'每次开奖消耗 1 次可用奖励';$('#rewardList').innerHTML=state.rewards.length?state.rewards.map(r=>`<div class="reward-row"><div><div class="reward-name">${esc(r.name)}</div><div class="reward-meta">${r.enabled?'已加入等概率奖池':'已停用'}</div></div>${isAdmin()?`<div class="inline"><button class="btn soft" data-toggle-reward="${r.id}" style="padding:7px 9px">${r.enabled?'停用':'启用'}</button><button class="btn danger" data-del-reward="${r.id}" style="padding:7px 9px">删除</button></div>`:''}</div>`).join(''):'<div class="empty-state">还没有奖励，先添加几个吧 🎁</div>';renderWheel();$('#spinBtn').disabled=!canPlayReward()||active.length<1;renderFlipCards();$('#rewardHistory').innerHTML=state.rewardHistory.length?state.rewardHistory.slice().reverse().map(x=>`<div class="request-item"><div><b>🎁 ${esc(x.reward)}</b><p>${new Date(x.time).toLocaleString('zh-CN')} · ${x.mode==='wheel'?'抽奖转盘':'翻牌'}${x.test?' · 测试记录':''}</p>${x.completedAt?`<div class="reward-complete-time" style="text-align:left;margin-top:5px">完成时间：${new Date(x.completedAt).toLocaleString('zh-CN')}</div>`:''}</div><div class="reward-history-actions"><span class="tag ${x.completed?'approved':x.test?'pending':'approved'}">${x.completed?'已完成':x.test?'测试':'已领取'}</span>${x.completed?'':`<button class="btn mint-btn" data-complete-reward="${x.id}" style="padding:7px 11px">完成</button>`}</div></div>`).join(''):'<div class="empty-state">还没有开奖记录，继续攒印章吧 ✨</div>'}
 function renderFlipCards(){let active=shuffle(state.rewards.filter(x=>x.enabled));let box=$('#flipCards');if(!box)return;box.innerHTML=active.length?active.map(r=>`<div class="flip ${!canPlayReward()?'disabled':''}" data-flip="${r.id}"><div class="inner"><div class="face front">💌</div><div class="face back">${esc(r.name)}</div></div></div>`).join(''):'<div class="empty-state" style="grid-column:1/-1">请先添加并启用奖励</div>'}
@@ -640,19 +672,79 @@ function completeReward(id){let item=state.rewardHistory.find(x=>x.id===id);if(!
 function showResult(reward,test=false){modal(`<h3>${test?'🧪 测试抽中！':'🎉 抽中啦！'}</h3><p>${test?'本次是测试结果，不会消耗正式奖励次数。':'这次的奖励是：'}</p><div class="result">${esc(reward)}</div><div class="modal-actions"><button class="btn primary" data-close-modal>${test?'继续测试':'开心收下'}</button></div>`)}
 function spin(){let active=state.rewards.filter(x=>x.enabled);if(!active.length||!canPlayReward())return;let idx=Math.floor(Math.random()*active.length),step=360/active.length,target=360-(idx+.5)*step,current=((wheelDeg%360)+360)%360,targetNorm=((target%360)+360)%360,delta=(targetNorm-current+360)%360;wheelDeg+=1440+delta;$('#wheel').style.transform=`rotate(${wheelDeg}deg)`;$('#spinBtn').disabled=true;setTimeout(()=>claimReward(active[idx].name,'wheel'),3350)}
 
-function missedSlots(now=new Date()){if(!state.settings.startDate)return [];let start=state.settings.startDate,today=ymd(now);if(start>today)return [];let min=now.getHours()*60+now.getMinutes(),out=[];for(let s=start;s<=today;s=addDaysLocal(s,1)){for(let meal of ['lunch','dinner']){if(mealDone(getDay(s)[meal]))continue;let expired=s<today||(s===today&&min>(meal==='lunch'?840:1439));if(!expired)continue;let pending=state.makeups.find(x=>x.date===s&&x.meal===meal&&x.status==='pending');let rejected=state.makeups.some(x=>x.date===s&&x.meal===meal&&x.status==='rejected');out.push({date:s,meal,pending:!!pending,rejected})}}return out.reverse()}
-function renderMakeups(){let pending=state.makeups.filter(x=>x.status==='pending').length,slots=missedSlots(),admin=isAdmin();$('#pendingMakeupCount').textContent=`${pending} 个待审核补签`;$('#makeupStartDate').textContent=state.settings.startDate?`起始 ${fmtDate(state.settings.startDate)}`:'尚未绑定';$('#missingMakeupList').innerHTML=slots.length?slots.map(x=>`<div class="missing-item ${x.meal}"><div class="missing-main"><div class="missing-icon">${x.meal==='lunch'?'☀️':'🌙'}</div><div class="missing-copy"><b>${fmtDate(x.date)} · ${x.meal==='lunch'?'午餐':'晚餐'}待补</b><p>${x.pending?'已经提交，正在等待审核':x.rejected?'上次申请被拒绝，可重新提交':'已错过规定打卡时间，系统自动识别'}</p></div></div>${admin?'<span class="pill">仅对象可申请</span>':`<button class="btn ${x.pending?'soft':'primary'}" data-auto-makeup="${x.date}|${x.meal}" ${x.pending?'disabled':''}>${x.pending?'待审核':x.rejected?'重新补签':'确认补签'}</button>`}</div>`).join(''):`<div class="empty-state">${state.settings.startDate?'目前没有需要补签的餐次 🎉':'请先绑定初始日期'}</div>`;$('#makeupList').innerHTML=state.makeups.length?state.makeups.slice().reverse().map(x=>reqHtml(x,'makeup')).join(''):'<div class="empty-state">还没有补签申请</div>'}
-function reqHtml(x,type){let cls=x.status==='pending'?'pending':x.status==='approved'?'approved':'rejected',tx=x.status==='pending'?'待确认':x.status==='approved'?'已通过':'已拒绝';if(type==='makeup')return `<div class="request-item"><div><b>📝 ${fmtDate(x.date)} · ${x.meal==='lunch'?'午餐':'晚餐'}补签</b><p>${esc(x.reason||'没有填写说明')}<br>${new Date(x.time).toLocaleString('zh-CN')}</p></div><span class="tag ${cls}">${tx}</span></div>`;let dateText=x.targetDate?fmtDate(x.targetDate):monthLabel(x.month);return `<div class="request-item"><div><b>🧹 ${esc(x.choreName)} · 补 ${x.credit} 天</b><p>补救日期：${dateText} · ${esc(x.note||'没有备注')}<br>${new Date(x.time).toLocaleString('zh-CN')}</p></div><span class="tag ${cls}">${tx}</span></div>`}
-function renderChorePicker(){
-  const title=$('#chorePickerTitle'),grid=$('#chorePickerGrid');if(!title||!grid)return;const year=chorePickerCursor.getFullYear(),month=chorePickerCursor.getMonth(),mon=`${year}-${String(month+1).padStart(2,'0')}`,days=new Date(year,month+1,0).getDate(),start=(new Date(year,month,1).getDay()+6)%7,selected=$('#choreDate').value,today=ymd();title.textContent=monthLabel(mon);
-  let html=['一','二','三','四','五','六','日'].map(x=>`<div class="picker-dow">${x}</div>`).join('');for(let i=0;i<start;i++)html+='<div class="picker-empty"></div>';for(let d=1;d<=days;d++){const date=`${mon}-${String(d).padStart(2,'0')}`,disabled=date<CHORE_MIN_DATE||date>today;html+=`<button type="button" class="picker-day ${date===today?'today':''} ${date===selected?'selected':''}" data-chore-date="${date}" ${disabled?'disabled':''}>${d}</button>`}grid.innerHTML=html;
-  const prev=new Date(year,month-1,1),next=new Date(year,month+1,1);$('#chorePrevMonth').disabled=ym(prev)<CHORE_MIN_DATE.slice(0,7);$('#choreNextMonth').disabled=ym(next)>ym();
+function missedSlots(now=new Date()){
+  if(!state.settings.startDate)return [];
+  let start=state.settings.startDate,today=ymd(now);if(start>today)return [];
+  let min=now.getHours()*60+now.getMinutes(),out=[];
+  for(let s=start;s<=today;s=addDaysLocal(s,1)){
+    for(let meal of ['lunch','dinner']){
+      if(mealDone(getDay(s)[meal]))continue;
+      let expired=s<today||(s===today&&min>(meal==='lunch'?840:1439)); if(!expired)continue;
+      let pending=state.makeups.find(x=>x.date===s&&x.meal===meal&&x.status==='pending');
+      let rejected=state.makeups.some(x=>x.date===s&&x.meal===meal&&x.status==='rejected');
+      out.push({date:s,meal,pending:!!pending,rejected});
+    }
+    // 阅读全天有效：当天不提前判漏，到了第二天才允许申请前一天阅读补签。
+    if(s<today && !readingDone(s)){
+      let meal='reading',pending=state.makeups.find(x=>x.date===s&&x.meal===meal&&x.status==='pending');
+      let rejected=state.makeups.some(x=>x.date===s&&x.meal===meal&&x.status==='rejected');
+      out.push({date:s,meal,pending:!!pending,rejected});
+    }
+  }
+  return out.reverse();
 }
-function setChoreDate(date){if(!date)return;$('#choreDate').value=date;$('#choreDateText').textContent=fmtDate(date);$('#choreDateText').classList.remove('date-placeholder');chorePickerCursor=parseYmdLocal(date);chorePickerCursor.setDate(1);renderChorePicker()}
+function makeupTypeMeta(meal){
+  return meal==='lunch'?{icon:'☀️',name:'午餐',kind:'餐次'}:meal==='dinner'?{icon:'🌙',name:'晚餐',kind:'餐次'}:{icon:'📚',name:'阅读',kind:'阅读'};
+}
+function renderMakeups(){
+  let pending=state.makeups.filter(x=>x.status==='pending').length,slots=missedSlots(),admin=isAdmin();
+  $('#pendingMakeupCount').textContent=`${pending} 个待审核补签`;$('#makeupStartDate').textContent=state.settings.startDate?`起始 ${fmtDate(state.settings.startDate)}`:'尚未绑定';
+  $('#missingMakeupList').innerHTML=slots.length?slots.map(x=>{let meta=makeupTypeMeta(x.meal);return `<div class="missing-item ${x.meal}"><div class="missing-main"><div class="missing-icon">${meta.icon}</div><div class="missing-copy"><b>${fmtDate(x.date)} · ${meta.name}待补</b><p>${x.pending?'已经提交，正在等待审核':x.rejected?'上次申请被拒绝，可重新提交':x.meal==='reading'?'前一天没有阅读记录，现在可以申请阅读补签':'已错过规定打卡时间，系统自动识别'}</p></div></div>${admin?'<span class="pill">仅对象可申请</span>':`<button class="btn ${x.pending?'soft':'primary'}" data-auto-makeup="${x.date}|${x.meal}" ${x.pending?'disabled':''}>${x.pending?'待审核':x.rejected?'重新补签':'确认补签'}</button>`}</div>`}).join(''):`<div class="empty-state">${state.settings.startDate?'目前没有需要补签的项目 🎉':'请先绑定初始日期'}</div>`;
+  $('#makeupList').innerHTML=state.makeups.length?state.makeups.slice().reverse().map(x=>reqHtml(x,'makeup')).join(''):'<div class="empty-state">还没有补签申请</div>';
+}
+function reqHtml(x,type){
+  let cls=x.status==='pending'?'pending':x.status==='approved'?'approved':'rejected',tx=x.status==='pending'?'待确认':x.status==='approved'?'已通过':'已拒绝';
+  if(type==='makeup'){
+    let meta=makeupTypeMeta(x.meal),detail=x.meal==='reading'?`<br>📖 ${esc(x.bookName||'未填写书名')} · 第 ${x.pageFrom??'—'}–${x.pageTo??'—'} 页`:'';
+    return `<div class="request-item"><div><b>📝 ${fmtDate(x.date)} · ${meta.name}补签</b><p>${esc(x.reason||'没有填写说明')}${detail}<br>${new Date(x.time).toLocaleString('zh-CN')}</p></div><span class="tag ${cls}">${tx}</span></div>`;
+  }
+  let dateText=x.targetDate?fmtDate(x.targetDate):monthLabel(x.month);return `<div class="request-item"><div><b>🧹 ${esc(x.choreName)} · 补 ${x.credit} 天</b><p>补救日期：${dateText} · ${esc(x.note||'没有备注')}<br>${new Date(x.time).toLocaleString('zh-CN')}</p></div><span class="tag ${cls}">${tx}</span></div>`;
+}
+function openChoreDatePicker(){
+  const minDate=CHORE_MIN_DATE,today=ymd(),selected=$('#choreDate').value||today;
+  chorePickerCursor=parseYmdLocal(selected);chorePickerCursor.setDate(1);
+  const minY=+minDate.slice(0,4),maxY=+today.slice(0,4);
+  const years=[];for(let y=minY;y<=maxY;y++)years.push(y);
+  modal(`<div class="date-modal-shell"><h3>📅 选择补救日期</h3><p>可选择 ${fmtDate(minDate)} 至今天之间的具体日期。</p><div class="date-modal-toolbar"><div class="field"><label>年份</label><select id="choreYearSelect">${years.map(y=>`<option value="${y}">${y} 年</option>`).join('')}</select></div><div class="field"><label>月份</label><select id="choreMonthSelect">${Array.from({length:12},(_,i)=>`<option value="${i}">${i+1} 月</option>`).join('')}</select></div></div><div class="date-modal-grid" id="choreModalGrid"></div><div class="modal-actions"><button class="btn soft" data-close-modal>取消</button></div></div>`);
+  const ysel=$('#choreYearSelect'),msel=$('#choreMonthSelect');
+  ysel.value=String(chorePickerCursor.getFullYear());msel.value=String(chorePickerCursor.getMonth());
+  const syncMonthAvailability=()=>{
+    const y=+ysel.value,minMon=CHORE_MIN_DATE.slice(0,7),maxMon=ymd().slice(0,7);
+    [...msel.options].forEach(o=>{const mon=`${y}-${String(+o.value+1).padStart(2,'0')}`;o.disabled=mon<minMon||mon>maxMon});
+    if(msel.selectedOptions[0]?.disabled){
+      const first=[...msel.options].find(o=>!o.disabled);if(first)msel.value=first.value;
+    }
+  };
+  const sync=()=>{syncMonthAvailability();chorePickerCursor=new Date(+ysel.value,+msel.value,1);renderChoreDateModalGrid()};
+  ysel.onchange=sync;msel.onchange=sync;syncMonthAvailability();renderChoreDateModalGrid();
+}
+function renderChoreDateModalGrid(){
+  const grid=$('#choreModalGrid');if(!grid)return;
+  const year=chorePickerCursor.getFullYear(),month=chorePickerCursor.getMonth(),mon=`${year}-${String(month+1).padStart(2,'0')}`,days=new Date(year,month+1,0).getDate(),start=(new Date(year,month,1).getDay()+6)%7,selected=$('#choreDate').value,today=ymd();
+  let html=['一','二','三','四','五','六','日'].map(x=>`<div class="date-modal-dow">${x}</div>`).join('');
+  for(let i=0;i<start;i++)html+='<div class="date-modal-empty"></div>';
+  for(let d=1;d<=days;d++){
+    const date=`${mon}-${String(d).padStart(2,'0')}`,disabled=date<CHORE_MIN_DATE||date>today;
+    html+=`<button type="button" class="date-modal-day ${date===today?'today':''} ${date===selected?'selected':''}" data-chore-date="${date}" ${disabled?'disabled':''}>${d}</button>`;
+  }
+  grid.innerHTML=html;
+  grid.onclick=e=>{let b=e.target.closest('[data-chore-date]');if(!b||b.disabled)return;setChoreDate(b.dataset.choreDate);closeModal()};
+}
+function setChoreDate(date){if(!date)return;$('#choreDate').value=date;$('#choreDateText').textContent=fmtDate(date);$('#choreDateText').classList.remove('date-placeholder')}
 function renderChores(){
   $('#choreList').innerHTML=state.chores.length?state.chores.map(x=>`<div class="chore"><div><b>${esc(x.name)}</b><br><small>折抵 ${x.credit} 天</small></div>${isAdmin()?`<button class="btn danger" data-del-chore="${x.id}" style="padding:7px 9px">删除</button>`:''}</div>`).join(''):'<div class="empty-state" style="grid-column:1/-1">还没有家务项目</div>';
   $('#choreSelect').innerHTML=state.chores.map(x=>`<option value="${x.id}">${esc(x.name)} · ${x.credit} 天</option>`).join('');
-  if(!$('#choreDate').value && ymd()>=CHORE_MIN_DATE)setChoreDate(ymd()); else renderChorePicker();
+  if(!$('#choreDate').value && ymd()>=CHORE_MIN_DATE)setChoreDate(ymd());
   let pending=state.choreRequests.filter(x=>x.status==='pending').length;$('#pendingChoreCount').textContent=`${pending} 个待审核家务`;$('#choreRequests').innerHTML=state.choreRequests.length?state.choreRequests.slice().reverse().map(x=>reqHtml(x,'chore')).join(''):'<div class="empty-state">还没有家务补卡记录</div>'
 }
 function renderSettings(){$('#targetDays').value=state.settings.targetDays;$('#rewardEvery').value=state.settings.rewardEvery;$('#demoToggle').classList.toggle('on',!!state.settings.demo);$('#settingsStartDate').textContent=state.settings.startDate?fmtDate(state.settings.startDate):'未绑定';let set=!!state.settings.passwordHash;$('#passwordSetup').style.display=set?'none':'block';$('#passwordSetState').style.display=set?'block':'none'}
@@ -664,11 +756,54 @@ function closeModal(force=false){if(modalLocked&&!force)return;$('#modal').class
 async function hash(t){let buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('')}
 async function verifyPassword(message='请输入你设置的管理密码，才能继续。'){if(!state.settings.passwordHash){toast('请先在规则设置里设置管理密码');return false}return await new Promise(resolve=>{modal(`<h3>🔐 管理员确认</h3><p>${esc(message)}</p><input class="input" id="verifyPwd" type="password" placeholder="管理密码" autofocus><div class="modal-actions"><button class="btn soft" id="verifyCancel">取消</button><button class="btn dark" id="verifyBtn">确认</button></div>`);setTimeout(()=>$('#verifyPwd')?.focus(),80);$('#verifyCancel').onclick=()=>{closeModal();resolve(false)};$('#verifyBtn').onclick=async()=>{let ok=(await hash($('#verifyPwd').value))===state.settings.passwordHash;if(ok){closeModal();resolve(true)}else{toast('密码不正确')}}})}
 function suggestedStartDate(){let keys=Object.keys(state.checkins).sort();return keys[0]||ymd()}
-function ensureStartDate(){if(!cloudReady||state.settings.startDate||startDatePromptOpen)return;if(!isAdmin()){return;}startDatePromptOpen=true;let def=suggestedStartDate();modal(`<h3>📅 第一次使用 · 绑定初始日期</h3><p>从这个日期开始，系统会每天检查午餐和晚餐是否漏打。已经错过时间窗的缺失餐次，会自动进入「补签中心」。</p><div class="field"><label>初始日期</label><input class="input" type="date" id="bindStartDate" max="${ymd()}" value="${def}"></div><div class="note" style="margin-top:10px">绑定后会作为补签识别的起点。建议选择你们正式开始执行打卡规则的那一天。</div><div class="modal-actions"><button class="btn primary" id="confirmStartDate">确认绑定</button></div>`,true);$('#confirmStartDate').onclick=()=>{let v=$('#bindStartDate').value;if(!v||v>ymd()){toast('请选择今天或更早的日期');return}state.settings.startDate=v;startDatePromptOpen=false;closeModal(true);save();toast('初始日期已绑定')}}
-async function review(type){let list=(type==='makeup'?state.makeups:state.choreRequests).filter(x=>x.status==='pending');if(!list.length){toast('没有待审核申请');return}if(!(await verifyPassword()))return;let body=list.map(x=>`<div class="request-item" style="margin:8px 0"><div><b>${type==='makeup'?`${fmtDate(x.date)} · ${x.meal==='lunch'?'午餐':'晚餐'}补签`:`${x.choreName} · ${x.targetDate?fmtDate(x.targetDate):monthLabel(x.month)} · ${x.credit}天`}</b><p>${esc(type==='makeup'?x.reason:x.note)||'无备注'}</p></div><div class="inline"><button class="btn mint-btn" data-review="approve" data-rid="${x.id}" data-type="${type}" style="padding:7px 9px">通过</button><button class="btn danger" data-review="reject" data-rid="${x.id}" data-type="${type}" style="padding:7px 9px">拒绝</button></div></div>`).join('');modal(`<h3>${type==='makeup'?'审核补签':'审核家务补卡'}</h3><p>审核结果会立即写入集章/月度数据。</p>${body}<div class="modal-actions"><button class="btn soft" data-close-modal>完成</button></div>`)}
-function applyReview(type,id,action){let arr=type==='makeup'?state.makeups:state.choreRequests,item=arr.find(x=>x.id===id);if(!item)return;item.status=action==='approve'?'approved':'rejected';item.reviewedAt=new Date().toISOString();if(type==='makeup'&&item.status==='approved'){state.checkins[item.date]=state.checkins[item.date]||{};let old=state.checkins[item.date][item.meal];if(!old?.status)state.checkins[item.date][item.meal]={status:'makeup',time:item.reviewedAt,photoId:null,bytes:0}}save();toast(action==='approve'?'已通过并计入数据':'已拒绝');setTimeout(()=>review(type),250)}
-function requestAutoMakeup(date,meal){if(isAdmin())return toast('管理员不能提交补签申请，请切换到打卡用户');if(mealDone(getDay(date)[meal]))return toast('这餐已经有记录，不需要补签');if(state.makeups.some(x=>x.date===date&&x.meal===meal&&x.status==='pending'))return toast('这餐已经在等待审核');let mealName=meal==='lunch'?'午餐':'晚餐';modal(`<h3>📝 确认补签</h3><p>系统识别到 <b>${fmtDate(date)} · ${mealName}</b> 已经错过打卡时间且没有记录。</p><div class="note">确认后只会提交申请，不会直接补上。仍需要管理员密码审核通过。</div><div class="modal-actions"><button class="btn soft" data-close-modal>取消</button><button class="btn primary" id="confirmAutoMakeup">确认申请</button></div>`);$('#confirmAutoMakeup').onclick=()=>{state.makeups.push({id:uid(),date,meal,reason:'系统自动识别漏打卡',auto:true,status:'pending',time:new Date().toISOString()});closeModal();save();toast('补签申请已提交，等待你确认')}}
-
+function ensureStartDate(){if(!cloudReady||state.settings.startDate||startDatePromptOpen)return;if(!isAdmin()){return;}startDatePromptOpen=true;let def=suggestedStartDate();modal(`<h3>📅 第一次使用 · 绑定初始日期</h3><p>从这个日期开始，系统会每天检查午餐、晚餐和阅读是否漏打。餐次按时间窗判断；阅读全天有效，到了第二天仍未完成时会进入「补签中心」。</p><div class="field"><label>初始日期</label><input class="input" type="date" id="bindStartDate" max="${ymd()}" value="${def}"></div><div class="note" style="margin-top:10px">绑定后会作为补签识别的起点。建议选择你们正式开始执行打卡规则的那一天。</div><div class="modal-actions"><button class="btn primary" id="confirmStartDate">确认绑定</button></div>`,true);$('#confirmStartDate').onclick=()=>{let v=$('#bindStartDate').value;if(!v||v>ymd()){toast('请选择今天或更早的日期');return}state.settings.startDate=v;startDatePromptOpen=false;closeModal(true);save();toast('初始日期已绑定')}}
+async function review(type){
+  let list=(type==='makeup'?state.makeups:state.choreRequests).filter(x=>x.status==='pending');if(!list.length){toast('没有待审核申请');return}if(!(await verifyPassword()))return;
+  let body=list.map(x=>{
+    let title=type==='makeup'?`${fmtDate(x.date)} · ${makeupTypeMeta(x.meal).name}补签`:`${x.choreName} · ${x.targetDate?fmtDate(x.targetDate):monthLabel(x.month)} · ${x.credit}天`;
+    let detail=type==='makeup'&&x.meal==='reading'?`<br>📖 ${esc(x.bookName)} · 第 ${x.pageFrom}–${x.pageTo} 页`:'';
+    return `<div class="request-item" style="margin:8px 0"><div><b>${title}</b><p>${esc(type==='makeup'?x.reason:x.note)||'无备注'}${detail}</p></div><div class="inline"><button class="btn mint-btn" data-review="approve" data-rid="${x.id}" data-type="${type}" style="padding:7px 9px">通过</button><button class="btn danger" data-review="reject" data-rid="${x.id}" data-type="${type}" style="padding:7px 9px">拒绝</button></div></div>`;
+  }).join('');
+  modal(`<h3>${type==='makeup'?'审核补签':'审核家务补卡'}</h3><p>审核结果会立即写入集章/月度数据。</p>${body}<div class="modal-actions"><button class="btn soft" data-close-modal>完成</button></div>`);
+}
+function applyReview(type,id,action){
+  let arr=type==='makeup'?state.makeups:state.choreRequests,item=arr.find(x=>x.id===id);if(!item)return;
+  item.status=action==='approve'?'approved':'rejected';item.reviewedAt=new Date().toISOString();
+  if(type==='makeup'&&item.status==='approved'){
+    if(item.meal==='reading'){
+      state.readings=state.readings||[];
+      if(!state.readings.some(x=>x.sourceRequestId===item.id)){
+        state.readings.push({id:`makeup-${item.id}`,date:item.date,bookId:item.bookId||'',bookName:item.bookName||'阅读补签',pageFrom:+item.pageFrom||1,pageTo:+item.pageTo||(+item.pageFrom||1),time:item.reviewedAt,status:'makeup',userId:item.requestedBy||'',sourceRequestId:item.id});
+      }
+    }else{
+      state.checkins[item.date]=state.checkins[item.date]||{};let old=state.checkins[item.date][item.meal];
+      if(!old?.status)state.checkins[item.date][item.meal]={status:'makeup',time:item.reviewedAt,photoId:null,bytes:0};
+    }
+  }
+  save();toast(action==='approve'?'已通过并计入数据':'已拒绝');setTimeout(()=>review(type),250);
+}
+function requestAutoMakeup(date,meal){
+  if(isAdmin())return toast('管理员不能提交补签申请，请切换到打卡用户');
+  if(meal==='reading'){
+    if(readingDone(date))return toast('这一天已经有阅读记录，不需要补签');
+    if(state.makeups.some(x=>x.date===date&&x.meal==='reading'&&x.status==='pending'))return toast('阅读补签已经在等待审核');
+    const books=state.books||[];
+    if(!books.length)return toast('书单还是空的，请先让管理员添加书本');
+    modal(`<h3>📚 申请阅读补签</h3><p>补签日期：<b>${fmtDate(date)}</b>。请选择当时阅读的书本和页码。</p><div class="field"><label>书本</label><select id="makeupReadingBook"><option value="">请选择书本</option>${books.map(x=>`<option value="${x.id}">${esc(x.name)}</option>`).join('')}</select></div><div class="form-grid" style="margin-top:10px"><div class="field"><label>从第几页</label><input class="input" id="makeupReadingFrom" type="number" min="1" inputmode="numeric"></div><div class="field"><label>到第几页</label><input class="input" id="makeupReadingTo" type="number" min="1" inputmode="numeric"></div></div><div class="note" style="margin-top:10px">阅读打卡当天 00:00–23:59 都有效；到了第二天仍没有记录时，才可以申请补前一天。</div><div class="modal-actions"><button class="btn soft" data-close-modal>取消</button><button class="btn primary" id="confirmReadingMakeup">提交申请</button></div>`);
+    $('#confirmReadingMakeup').onclick=()=>{
+      const bid=$('#makeupReadingBook').value,book=books.find(x=>x.id===bid),from=+$('#makeupReadingFrom').value,to=+$('#makeupReadingTo').value;
+      if(!book)return toast('请选择书本');if(!Number.isInteger(from)||from<1||!Number.isInteger(to)||to<from)return toast('请填写正确的起止页码');
+      state.makeups.push({id:uid(),date,meal:'reading',reason:'补前一天阅读打卡',auto:true,status:'pending',time:new Date().toISOString(),bookId:book.id,bookName:book.name,pageFrom:from,pageTo:to});
+      closeModal();save();toast('阅读补签申请已提交，等待管理员审核');
+    };
+    return;
+  }
+  if(mealDone(getDay(date)[meal]))return toast('这餐已经有记录，不需要补签');
+  if(state.makeups.some(x=>x.date===date&&x.meal===meal&&x.status==='pending'))return toast('这餐已经在等待审核');
+  let mealName=meal==='lunch'?'午餐':'晚餐';
+  modal(`<h3>📝 确认补签</h3><p>系统识别到 <b>${fmtDate(date)} · ${mealName}</b> 已经错过打卡时间且没有记录。</p><div class="note">确认后只会提交申请，不会直接补上。仍需要管理员密码审核通过。</div><div class="modal-actions"><button class="btn soft" data-close-modal>取消</button><button class="btn primary" id="confirmAutoMakeup">确认申请</button></div>`);
+  $('#confirmAutoMakeup').onclick=()=>{state.makeups.push({id:uid(),date,meal,reason:'系统自动识别漏打卡',auto:true,status:'pending',time:new Date().toISOString()});closeModal();save();toast('补签申请已提交，等待管理员审核')};
+}
 
 function setSyncStatus(text){let el=$('#syncPill');if(el)el.textContent=text}
 function applyRoleUI(){
@@ -770,13 +905,9 @@ $('#rewardMode').onchange=()=>{let f=$('#rewardMode').value==='flip';$('#wheelPa
 $('#flipCards').addEventListener('click',e=>{let c=e.target.closest('[data-flip]');if(!c||c.classList.contains('open')||!canPlayReward())return;let reward=state.rewards.find(x=>x.id===c.dataset.flip);$$('.flip').forEach(x=>x.classList.add('disabled'));c.classList.remove('disabled');c.classList.add('open');setTimeout(()=>claimReward(reward.name,'flip'),650)});
 $('#reviewMakeupBtn').onclick=()=>isAdmin()?review('makeup'):toast('只有管理员可以审核');
 $('#addBookBtn').onclick=()=>{if(!isAdmin())return toast('只有管理员可以添加书本');modal(`<h3>📚 添加书本</h3><p>输入书本名字，保存后打卡用户就能在下拉框中选择。</p><input class="input" id="bookNameModal" placeholder="例如：百年孤独" autofocus><div class="modal-actions"><button class="btn soft" data-close-modal>取消</button><button class="btn primary" id="saveBookModal">添加书本</button></div>`);setTimeout(()=>$('#bookNameModal')?.focus(),80);$('#saveBookModal').onclick=()=>{let name=$('#bookNameModal').value.trim();if(!name)return toast('请输入书本名字');if((state.books||[]).some(x=>x.name.toLowerCase()===name.toLowerCase()))return toast('这本书已经在书单里了');state.books.push({id:uid(),name,createdAt:new Date().toISOString()});closeModal();save();toast('书本已添加')}};
-$('#submitReading').onclick=()=>{if(isAdmin())return toast('请切换到打卡用户后记录阅读');let id=$('#readingBook').value,book=(state.books||[]).find(x=>x.id===id),from=Number($('#readingFrom').value),to=Number($('#readingTo').value);if(!book)return toast('请选择一本书');if(!Number.isInteger(from)||from<1||!Number.isInteger(to)||to<from)return toast('请填写正确的起止页码');state.readings=state.readings||[];state.readings.push({id:uid(),date:ymd(),bookId:book.id,bookName:book.name,pageFrom:from,pageTo:to,time:new Date().toISOString()});$('#readingFrom').value='';$('#readingTo').value='';save();toast('阅读打卡完成 📖')};
+$('#submitReading').onclick=()=>{if(isAdmin())return toast('请切换到打卡用户后记录阅读');let id=$('#readingBook').value,book=(state.books||[]).find(x=>x.id===id),from=Number($('#readingFrom').value),to=Number($('#readingTo').value);if(!book)return toast('请选择一本书');if(!Number.isInteger(from)||from<1||!Number.isInteger(to)||to<from)return toast('请填写正确的起止页码');state.readings=state.readings||[];state.readings.push({id:uid(),date:ymd(),bookId:book.id,bookName:book.name,pageFrom:from,pageTo:to,time:new Date().toISOString(),status:'onTime',userId:cloud.user?.id||'',sourceRequestId:''});$('#readingFrom').value='';$('#readingTo').value='';save();toast('阅读打卡完成 📖')};
 $('#addChore').onclick=()=>{if(!isAdmin())return toast('只有管理员可以添加家务');let n=$('#choreName').value.trim(),c=Math.max(1,+$('#choreCredit').value||1);if(!n)return toast('请输入家务名称');state.chores.push({id:uid(),name:n,credit:c});$('#choreName').value='';save();toast('家务已添加')};
-$('#choreDateBtn').onclick=e=>{e.stopPropagation();let pop=$('#choreDatePicker');pop.style.display=pop.style.display==='none'?'block':'none';renderChorePicker()};
-$('#chorePrevMonth').onclick=e=>{e.stopPropagation();chorePickerCursor.setMonth(chorePickerCursor.getMonth()-1);renderChorePicker()};
-$('#choreNextMonth').onclick=e=>{e.stopPropagation();chorePickerCursor.setMonth(chorePickerCursor.getMonth()+1);renderChorePicker()};
-$('#chorePickerGrid').onclick=e=>{let b=e.target.closest('[data-chore-date]');if(!b||b.disabled)return;setChoreDate(b.dataset.choreDate);$('#choreDatePicker').style.display='none'};
-document.addEventListener('click',e=>{if(!e.target.closest('.date-picker-field'))$('#choreDatePicker').style.display='none'});
+$('#choreDateBtn').onclick=()=>openChoreDatePicker();
 $('#submitChore').onclick=()=>{if(isAdmin())return toast('管理员不能提交家务补卡，请切换到打卡用户');let date=$('#choreDate').value,id=$('#choreSelect').value,note=$('#choreNote').value.trim(),ch=state.chores.find(x=>x.id===id);if(!date||!ch)return toast('请选择具体补救日期和家务');if(date<CHORE_MIN_DATE)return toast('家务补卡从 2026 年 9 月 4 日开始');if(date>ymd())return toast('不能选择未来日期');if(fullDay(date))return toast('这一天已经完整打卡，不需要家务补卡');if(state.choreRequests.some(x=>x.targetDate===date&&['pending','approved'].includes(x.status)))return toast('这一天已经有待审核或已通过的家务补卡');let mon=date.slice(0,7);state.choreRequests.push({id:uid(),month:mon,targetDate:date,choreId:id,choreName:ch.name,credit:ch.credit,note,status:'pending',time:new Date().toISOString()});$('#choreNote').value='';save();toast(`已提交 ${fmtDate(date)} 的家务补卡申请`)};$('#reviewChoreBtn').onclick=()=>isAdmin()?review('chore'):toast('只有管理员可以审核');
 $('#demoToggle').onclick=async()=>{if(!isAdmin())return toast('只有管理员可以开启测试模式');let wantOn=!state.settings.demo;if(wantOn&&!(await verifyPassword('开启测试模式需要管理员确认。开启后可无限抽奖、翻牌，并解除当天上传时间限制。')))return;state.settings.demo=wantOn;save();toast(wantOn?'测试模式已开启 · 奖励无限测试':'测试模式已关闭')};$('#saveRules').onclick=()=>{if(!isAdmin())return toast('只有管理员可以修改规则');state.settings.targetDays=Math.max(1,+$('#targetDays').value||22);state.settings.rewardEvery=Math.max(1,+$('#rewardEvery').value||15);save();toast('规则已保存')};
 $('#savePassword').onclick=async()=>{if(!isAdmin())return toast('只有管理员可以设置管理密码');if(state.settings.passwordHash)return toast('管理密码已经设置，不能直接覆盖');let a=$('#newPassword').value;if(a.length<4)return toast('密码至少 4 位');state.settings.passwordHash=await hash(a);$('#newPassword').value='';save();toast('管理密码已设置并锁定')};
