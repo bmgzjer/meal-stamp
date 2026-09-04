@@ -155,7 +155,10 @@
   .cloud-gate{min-height:100vh;display:grid;place-items:center;padding:22px;background:radial-gradient(circle at 10% 10%,#FFF1A8 0,transparent 30%),radial-gradient(circle at 90% 20%,#FFD2E0 0,transparent 30%),#FFF9E9}
   .gate-card{width:min(460px,100%);background:#FFFEFA;border:1px solid #ECDDE2;border-radius:28px;padding:22px;box-shadow:0 18px 55px rgba(114,72,87,.13)}
   .gate-logo{font-size:42px}.gate-card h1{font-size:24px;margin:8px 0 6px}.gate-card p{font-size:12px;color:#8C7B82;line-height:1.7}.gate-actions{display:grid;gap:9px;margin-top:14px}.gate-sep{text-align:center;color:#B39DA5;font-size:11px;margin:12px 0}.gate-msg{font-size:11px;min-height:18px;margin-top:10px}.cloud-mini{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.cloud-mini .pill{font-size:11px}.cloud-code{font-family:ui-monospace,monospace;font-weight:900;letter-spacing:.08em;user-select:all}.admin-only-note{font-size:11px;color:#8C7B82}
-  @media(max-width:620px){.cloud-gate{min-height:100svh;padding:14px}.gate-card{border-radius:24px;padding:18px}.gate-card input{font-size:16px}.cloud-mini{display:none}}
+  .top-actions{display:flex;align-items:center;gap:8px}.quick-switch-top{border:1px solid var(--line);background:rgba(255,255,255,.86);box-shadow:var(--shadow-soft);border-radius:999px;padding:9px 12px;font-weight:900;font-size:12px;white-space:nowrap}.quick-switch-top:hover{transform:translateY(-1px)}
+  .quick-account-title{font-size:11px;font-weight:900;color:#8C7B82;margin:14px 0 7px}.quick-account-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.quick-account{border:1px solid var(--line);background:linear-gradient(135deg,#FFFEFA,#FFF5F8);border-radius:16px;padding:10px 11px;text-align:left;box-shadow:var(--shadow-soft)}.quick-account b{display:block;font-size:12px}.quick-account span{display:block;color:var(--muted);font-size:10px;margin-top:3px}.quick-account.current{box-shadow:inset 0 0 0 2px var(--mint);background:var(--mint-2)}
+  .role-only-note{padding:12px 13px;border-radius:16px;background:var(--mint-2);color:#55796C;font-size:12px;line-height:1.6}
+  @media(max-width:620px){.cloud-gate{min-height:100svh;padding:14px}.gate-card{border-radius:24px;padding:18px}.gate-card input{font-size:16px}.cloud-mini{display:none}.quick-switch-top{width:42px;height:42px;padding:0;display:grid;place-items:center;font-size:18px}.quick-switch-top span{display:none}.top-actions{margin-left:auto}.quick-account-grid{grid-template-columns:1fr 1fr}}
 
 
   .photo-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.gallery-item{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#FFFEFA;box-shadow:var(--shadow-soft)}.gallery-item img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#F5ECEF}.gallery-meta{padding:9px 10px;font-size:11px;color:var(--muted)}.gallery-meta b{display:block;color:var(--ink);font-size:12px;margin-bottom:2px}@media(max-width:620px){.photo-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.gallery-item{border-radius:15px}.gallery-meta{padding:7px 8px;font-size:9px}.gallery-meta b{font-size:11px}}
@@ -167,7 +170,7 @@
   <div class="gate-card">
     <div class="gate-logo">🍱☁️</div><h1>准时吃饭 · 云端同步</h1><p>APK 和浏览器会连接同一个情侣空间。照片先压缩，再上传到私密云端；断网时会先保存在本机，恢复网络后自动同步。</p>
     <div data-gate-step="config" style="display:block"><div class="field"><label>Supabase Project URL</label><input class="input" id="supabaseUrl" placeholder="https://xxxx.supabase.co"></div><div class="field" style="margin-top:9px"><label>Publishable key</label><input class="input" id="supabaseKey" placeholder="sb_publishable_... / anon key"></div><div class="gate-actions"><button class="btn primary" id="saveCloudConfig">保存云端配置</button></div><div class="note" style="margin-top:10px">这两个值是客户端公开配置，不要填写 service_role / secret key。</div></div>
-    <div data-gate-step="auth" style="display:none"><div class="field"><label>邮箱</label><input class="input" id="authEmail" type="email" autocomplete="email" placeholder="you@example.com"></div><div class="field" style="margin-top:9px"><label>登录密码</label><input class="input" id="authPassword" type="password" autocomplete="current-password" placeholder="至少 6 位"></div><div class="gate-actions"><button class="btn primary" id="loginBtn">登录</button><button class="btn soft" id="signupBtn">第一次使用 · 注册</button><button class="btn soft" id="changeCloudConfig">修改 Supabase 配置</button></div></div>
+    <div data-gate-step="auth" style="display:none"><div class="field"><label>邮箱</label><input class="input" id="authEmail" type="email" autocomplete="email" placeholder="you@example.com"></div><div class="field" style="margin-top:9px"><label>登录密码</label><input class="input" id="authPassword" type="password" autocomplete="current-password" placeholder="输入该账号密码"></div><div class="quick-account-title">快速选择用户</div><div class="quick-account-grid"><button class="quick-account" type="button" data-quick-account="admin"><b>👑 管理员</b><span>2603••••695@qq.com</span></button><button class="quick-account" type="button" data-quick-account="member"><b>🍚 打卡用户</b><span>9549••••196@qq.com</span></button></div><div class="gate-actions"><button class="btn primary" id="loginBtn">登录</button><button class="btn soft" id="signupBtn">第一次使用 · 注册</button><button class="btn soft" id="changeCloudConfig">修改 Supabase 配置</button></div></div>
     <div data-gate-step="space" style="display:none"><div class="field"><label>创建一个新的情侣空间</label><input class="input" id="spaceName" value="我们的打卡空间" maxlength="40"></div><button class="btn primary" id="createSpaceBtn" style="width:100%;margin-top:9px">我是管理员 · 创建空间</button><div class="gate-sep">或者</div><div class="field"><label>输入对象发来的邀请码</label><input class="input" id="inviteCode" maxlength="10" placeholder="10 位邀请码" style="text-transform:uppercase"></div><button class="btn yellow-btn" id="joinSpaceBtn" style="width:100%;margin-top:9px">我是对象 · 加入空间</button><button class="btn soft" id="gateSignOut" style="width:100%;margin-top:9px">退出账号</button></div>
     <div class="gate-msg" id="gateMsg"></div>
   </div>
@@ -177,7 +180,7 @@
 <div class="app" id="mainApp" style="display:none">
   <header class="topbar">
     <div class="brand"><div class="brand-mark">🍱</div><div><h1>准时吃饭打卡站</h1><p>把好好吃饭，变成一件有奖励的小事 ♡</p></div></div>
-    <div class="cloud-mini"><div class="pill" id="syncPill">连接云端…</div><div class="pill" id="clockPill">今天也要按时吃饭</div></div>
+    <div class="top-actions"><button class="quick-switch-top" id="quickSwitchUser" type="button" title="快速切换用户">⇄ <span>切换用户</span></button><div class="cloud-mini"><div class="pill" id="syncPill">连接云端…</div><div class="pill" id="clockPill">今天也要按时吃饭</div></div></div>
   </header>
   <div class="layout">
     <aside class="sidebar">
@@ -246,7 +249,7 @@
       <section class="page" id="page-chores">
         <div class="hero"><div class="hero-row"><div><div class="eyebrow">CHORES RESET</div><h2>这个月没达标？用家务补救 🧹</h2><p>历史月份如果少于 22 个完整打卡日，会进入「失效」状态。完成并审核通过的家务，可以按设定的折抵天数补回缺口。</p></div><div class="hero-art">🧹🫧</div></div></div>
         <div class="grid g2"><div class="card"><h3>家务清单</h3><div class="sub">可以自由添加家务，并设置每次能折抵多少天。</div><div class="inline" style="margin-bottom:10px"><input class="input" id="choreName" placeholder="例如：洗碗 + 收厨房" style="flex:1"><input class="input" id="choreCredit" type="number" min="1" max="7" value="1" style="width:86px"><button class="btn yellow-btn" id="addChore">添加</button></div><div class="chores" id="choreList"></div></div>
-        <div class="card"><h3>提交家务补卡</h3><div class="sub">选择需要补救的月份和已完成的家务。通过你的密码审核后才会计入。</div><div class="form-grid"><div class="field"><label>补救月份</label><input class="input" id="choreMonth" type="month"></div><div class="field"><label>已完成家务</label><select id="choreSelect"></select></div></div><div class="field" style="margin-top:10px"><label>备注</label><textarea id="choreNote" placeholder="例如：周六完成，厨房收拾得很干净～"></textarea></div><button class="btn primary" id="submitChore" style="margin-top:10px">提交补卡申请</button><div class="inline" style="margin-top:12px"><span class="pill" id="pendingChoreCount">0 个待审核家务</span><button class="btn dark" id="reviewChoreBtn">审核家务</button></div></div></div>
+        <div class="card"><h3 id="choreActionTitle">提交家务补卡</h3><div class="sub" id="choreActionSub">选择需要补救的月份和已完成的家务。提交后等待管理员审核。</div><div id="choreSubmitSection"><div class="form-grid"><div class="field"><label>补救月份</label><input class="input" id="choreMonth" type="month"></div><div class="field"><label>已完成家务</label><select id="choreSelect"></select></div></div><div class="field" style="margin-top:10px"><label>备注</label><textarea id="choreNote" placeholder="例如：周六完成，厨房收拾得很干净～"></textarea></div><button class="btn primary" id="submitChore" style="margin-top:10px">提交补卡申请</button></div><div id="choreReviewSection" style="display:none"><div class="role-only-note">管理员只负责审核对象提交的家务补卡，不会再出现“管理员自己提交家务申请”的入口。</div><div class="inline" style="margin-top:12px"><span class="pill" id="pendingChoreCount">0 个待审核家务</span><button class="btn dark" id="reviewChoreBtn">审核家务</button></div></div></div></div>
         <div class="section-title"><div><h2>家务补卡记录</h2><p>通过后自动连接到对应月份</p></div></div><div class="card request" id="choreRequests"></div>
       </section>
 
@@ -263,6 +266,354 @@
 </div>
 <div class="toast" id="toast"></div>
 <div class="modal" id="modal"><div class="modal-card" id="modalCard"></div></div>
-<script type="module" src="/src/app.js"></script>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.4/+esm';
+
+const CONFIG_KEY = 'meal_stamp_cloud_config_v1';
+const ACTIVE_SPACE_KEY = 'meal_stamp_active_space_v1';
+const ROLE_KEY = 'meal_stamp_cached_role_v1';
+const SPACE_META_KEY = 'meal_stamp_cached_space_meta_v1';
+
+const jsonGet = (key, fallback=null) => { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; } };
+const must = (data, error) => { if (error) throw error; return data; };
+
+class CloudBridge {
+  constructor(){
+    this.config = jsonGet(CONFIG_KEY, null);
+    this.client = null;
+    this.user = null;
+    this.space = null;
+    this.role = localStorage.getItem(ROLE_KEY) || '';
+    this.channel = null;
+    if (this.config?.url && this.config?.key) this._createClient();
+  }
+
+  _createClient(){
+    this.client = createClient(this.config.url, this.config.key, {
+      auth: { persistSession:true, autoRefreshToken:true, detectSessionInUrl:true },
+      realtime: { params: { eventsPerSecond: 8 } }
+    });
+  }
+
+  hasConfig(){ return !!(this.config?.url && this.config?.key); }
+  getCachedSpace(){ return jsonGet(SPACE_META_KEY, null); }
+  setConfig(url,key){
+    url = String(url||'').trim().replace(/\/+$/,''); key = String(key||'').trim();
+    if (!/^https:\/\/.+\.supabase\.co$/i.test(url) && !/^https:\/\//i.test(url)) throw new Error('Supabase URL 格式不正确');
+    if (key.length < 20) throw new Error('Publishable key 看起来不完整');
+    this.config={url,key}; localStorage.setItem(CONFIG_KEY,JSON.stringify(this.config)); this._createClient();
+  }
+  clearConfig(){ localStorage.removeItem(CONFIG_KEY); localStorage.removeItem(ACTIVE_SPACE_KEY); localStorage.removeItem(ROLE_KEY); localStorage.removeItem(SPACE_META_KEY); this.config=null; this.client=null; this.user=null; this.space=null; this.role=''; }
+
+  async getSession(){
+    if(!this.client) return null;
+    const {data,error}=await this.client.auth.getSession(); if(error) throw error;
+    this.user=data.session?.user||null; return data.session||null;
+  }
+  async signIn(email,password){ const {data,error}=await this.client.auth.signInWithPassword({email:email.trim(),password}); must(data,error); this.user=data.user; return data; }
+  async signUp(email,password){ const {data,error}=await this.client.auth.signUp({email:email.trim(),password}); must(data,error); this.user=data.user; return data; }
+  async signOut(){ if(this.channel) await this.client.removeChannel(this.channel).catch(()=>{}); await this.client.auth.signOut(); this.user=null; this.space=null; this.role=''; localStorage.removeItem(ACTIVE_SPACE_KEY); localStorage.removeItem(ROLE_KEY); localStorage.removeItem(SPACE_META_KEY); }
+
+  async loadMembership(){
+    if(!this.user) await this.getSession(); if(!this.user) return null;
+    const {data,error}=await this.client.from('space_members').select('space_id,role').eq('user_id',this.user.id).maybeSingle(); must(data,error);
+    if(!data){ this.space=null; this.role=''; return null; }
+    const {data:space,error:se}=await this.client.from('spaces').select('*').eq('id',data.space_id).single(); must(space,se);
+    this.space=space; this.role=data.role;
+    localStorage.setItem(ACTIVE_SPACE_KEY,space.id); localStorage.setItem(ROLE_KEY,this.role); localStorage.setItem(SPACE_META_KEY,JSON.stringify(space));
+    return {space,role:this.role};
+  }
+  async createSpace(name){ const {data,error}=await this.client.rpc('create_space',{p_name:name||'我们的打卡空间'}); must(data,error); await this.loadMembership(); return Array.isArray(data)?data[0]:data; }
+  async joinSpace(code){ const {data,error}=await this.client.rpc('join_space',{p_invite_code:String(code||'').trim().toUpperCase()}); must(data,error); await this.loadMembership(); return Array.isArray(data)?data[0]:data; }
+
+  cacheKey(){ return `meal_stamp_state_v4_${this.space?.id || localStorage.getItem(ACTIVE_SPACE_KEY) || 'unknown'}`; }
+
+  async loadState(defaultState){
+    if(!this.space) await this.loadMembership(); if(!this.space) throw new Error('尚未加入情侣空间');
+    const sid=this.space.id;
+    const [sp,checkins,rewards,draws,makeups,chores,choreReqs] = await Promise.all([
+      this.client.from('spaces').select('*').eq('id',sid).single(),
+      this.client.from('checkins').select('*').eq('space_id',sid),
+      this.client.from('rewards').select('*').eq('space_id',sid).order('sort_order'),
+      this.client.from('reward_draws').select('*').eq('space_id',sid).order('drawn_at'),
+      this.client.from('makeup_requests').select('*').eq('space_id',sid).order('requested_at'),
+      this.client.from('chores').select('*').eq('space_id',sid).order('sort_order'),
+      this.client.from('chore_requests').select('*').eq('space_id',sid).order('requested_at')
+    ]);
+    [sp,checkins,rewards,draws,makeups,chores,choreReqs].forEach(x=>{if(x.error)throw x.error});
+    this.space=sp.data; localStorage.setItem(SPACE_META_KEY,JSON.stringify(this.space));
+    let passwordHash='';
+    if(this.role==='admin'){
+      const sec=await this.client.from('admin_secrets').select('password_hash').eq('space_id',sid).maybeSingle();
+      if(sec.error) throw sec.error; passwordHash=sec.data?.password_hash||'';
+    }
+    const s=JSON.parse(JSON.stringify(defaultState));
+    s.settings={...s.settings,targetDays:sp.data.target_days,rewardEvery:sp.data.reward_every,demo:sp.data.demo,startDate:sp.data.start_date||'',passwordHash};
+    s.checkins={};
+    for(const r of checkins.data||[]){ const d=String(r.day); s.checkins[d]=s.checkins[d]||{}; s.checkins[d][r.meal]={status:r.status,time:r.checkin_time,photoId:r.photo_id||null,photoPath:r.photo_path||null,bytes:r.bytes||0}; }
+    s.rewards=(rewards.data||[]).map(r=>({id:r.id,name:r.name,enabled:r.enabled}));
+    s.rewardHistory=(draws.data||[]).map(r=>({id:r.id,reward:r.reward,time:r.drawn_at,mode:r.mode,test:r.is_test,completed:r.completed,completedAt:r.completed_at}));
+    s.makeups=(makeups.data||[]).map(r=>({id:r.id,date:String(r.day),meal:r.meal,reason:r.reason,auto:r.auto_detected,status:r.status,time:r.requested_at,reviewedAt:r.reviewed_at}));
+    s.chores=(chores.data||[]).map(r=>({id:r.id,name:r.name,credit:r.credit}));
+    s.choreRequests=(choreReqs.data||[]).map(r=>({id:r.id,month:r.month,choreId:r.chore_id,choreName:r.chore_name,credit:r.credit,note:r.note,status:r.status,time:r.requested_at,reviewedAt:r.reviewed_at}));
+    return s;
+  }
+
+  async syncState(state){
+    if(!this.space || !this.user) return;
+    const sid=this.space.id, uid=this.user.id, ops=[];
+
+    if(this.role==='admin'){
+      // 管理员只同步“管理类”数据，不再重写对象的正常打卡 / 奖励记录 / 申请创建。
+      ops.push(this.client.from('spaces').update({target_days:+state.settings.targetDays||22,reward_every:+state.settings.rewardEvery||15,start_date:state.settings.startDate||null,demo:!!state.settings.demo}).eq('id',sid));
+      ops.push(this.client.from('admin_secrets').upsert({space_id:sid,password_hash:state.settings.passwordHash||''},{onConflict:'space_id'}));
+      if(state.rewards.length) ops.push(this.client.from('rewards').upsert(state.rewards.map((r,i)=>({id:r.id,space_id:sid,name:r.name,enabled:!!r.enabled,sort_order:i})),{onConflict:'space_id,id'}));
+      if(state.chores.length) ops.push(this.client.from('chores').upsert(state.chores.map((r,i)=>({id:r.id,space_id:sid,name:r.name,credit:+r.credit||1,sort_order:i})),{onConflict:'space_id,id'}));
+
+      // 管理员只物化“审核通过的补签”餐次；正常 onTime 打卡只能由对象账号写入。
+      const makeupCheckRows=[];
+      for(const [day,v] of Object.entries(state.checkins||{})){
+        for(const meal of ['lunch','dinner']){
+          const x=v?.[meal];
+          if(x?.status==='makeup') makeupCheckRows.push({space_id:sid,day,meal,status:'makeup',checkin_time:x.time||new Date().toISOString(),photo_id:null,photo_path:null,bytes:0,updated_by:uid});
+        }
+      }
+      if(makeupCheckRows.length) ops.push(this.client.from('checkins').upsert(makeupCheckRows,{onConflict:'space_id,day,meal'}));
+
+      // 审核只能 UPDATE 已由对象提交的申请，绝不由管理员 INSERT / UPSERT 新申请。
+      for(const x of state.makeups||[]){
+        if(x.status!=='pending' && x.reviewedAt){
+          ops.push(this.client.from('makeup_requests').update({status:x.status,reviewed_at:x.reviewedAt,reviewed_by:uid}).eq('space_id',sid).eq('id',x.id));
+        }
+      }
+      for(const x of state.choreRequests||[]){
+        if(x.status!=='pending' && x.reviewedAt){
+          ops.push(this.client.from('chore_requests').update({status:x.status,reviewed_at:x.reviewedAt,reviewed_by:uid}).eq('space_id',sid).eq('id',x.id));
+        }
+      }
+    } else {
+      // 对象账号只同步自己的正常打卡；从云端读到的 makeup 补签不会被再次写回。
+      const checkRows=[];
+      for(const [day,v] of Object.entries(state.checkins||{})){
+        for(const meal of ['lunch','dinner']){
+          const x=v?.[meal];
+          if(x?.status==='onTime') checkRows.push({space_id:sid,day,meal,status:'onTime',checkin_time:x.time||new Date().toISOString(),photo_id:x.photoId||null,photo_path:x.photoPath||null,bytes:+x.bytes||0,updated_by:uid});
+        }
+      }
+      if(checkRows.length) ops.push(this.client.from('checkins').upsert(checkRows,{onConflict:'space_id,day,meal'}));
+
+      // 奖励抽取属于对象账号。
+      if(state.rewardHistory.length) ops.push(this.client.from('reward_draws').upsert(state.rewardHistory.map(x=>({id:x.id,space_id:sid,reward:x.reward,mode:x.mode,is_test:!!x.test,drawn_at:x.time,completed:!!x.completed,completed_at:x.completedAt||null,user_id:uid})),{onConflict:'space_id,id'}));
+
+      // 对象只 INSERT 本地新增、仍为 pending 的申请。
+      const [mr,cr]=await Promise.all([
+        this.client.from('makeup_requests').select('id').eq('space_id',sid),
+        this.client.from('chore_requests').select('id').eq('space_id',sid)
+      ]);
+      if(mr.error)throw mr.error; if(cr.error)throw cr.error;
+      const haveM=new Set((mr.data||[]).map(x=>x.id)), haveC=new Set((cr.data||[]).map(x=>x.id));
+      const newM=(state.makeups||[]).filter(x=>x.status==='pending'&&!haveM.has(x.id)).map(x=>({id:x.id,space_id:sid,day:x.date,meal:x.meal,reason:x.reason||'',auto_detected:!!x.auto,status:'pending',requested_at:x.time,requested_by:uid}));
+      const newC=(state.choreRequests||[]).filter(x=>x.status==='pending'&&!haveC.has(x.id)).map(x=>({id:x.id,space_id:sid,month:x.month,chore_id:x.choreId||null,chore_name:x.choreName,credit:+x.credit||1,note:x.note||'',status:'pending',requested_at:x.time,requested_by:uid}));
+      if(newM.length) ops.push(this.client.from('makeup_requests').insert(newM));
+      if(newC.length) ops.push(this.client.from('chore_requests').insert(newC));
+    }
+
+    const results=await Promise.all(ops);
+    const bad=results.find(x=>x.error); if(bad) throw bad.error;
+  }
+  async deleteCheckin(day,meal){ if(!this.space)return; const {error}=await this.client.from('checkins').delete().eq('space_id',this.space.id).eq('day',day).eq('meal',meal); if(error)throw error; }
+  async deleteReward(id){ if(this.role!=='admin')return; const {error}=await this.client.from('rewards').delete().eq('space_id',this.space.id).eq('id',id); if(error)throw error; }
+  async deleteChore(id){ if(this.role!=='admin')return; const {error}=await this.client.from('chores').delete().eq('space_id',this.space.id).eq('id',id); if(error)throw error; }
+
+  async uploadPhoto(day,meal,photoId,blob){
+    if(!this.space) throw new Error('没有情侣空间');
+    const path=`${this.space.id}/${day}/${meal}/${photoId}.jpg`;
+    const {error}=await this.client.storage.from('checkin-photos').upload(path,blob,{contentType:'image/jpeg',upsert:true,cacheControl:'3600'}); if(error)throw error; return path;
+  }
+  async downloadPhoto(path){ const {data,error}=await this.client.storage.from('checkin-photos').download(path); if(error)throw error; return data; }
+  async deletePhoto(path){ if(!path)return; const {error}=await this.client.storage.from('checkin-photos').remove([path]); if(error)throw error; }
+
+  async resetSpaceData(){
+    if(this.role!=='admin') throw new Error('只有管理员可以清空空间');
+    const sid=this.space.id;
+    const {data:photos,error:pe}=await this.client.from('checkins').select('photo_path').eq('space_id',sid).not('photo_path','is',null); if(pe)throw pe;
+    const paths=(photos||[]).map(x=>x.photo_path).filter(Boolean); if(paths.length){const r=await this.client.storage.from('checkin-photos').remove(paths); if(r.error)throw r.error;}
+    for(const t of ['reward_draws','makeup_requests','chore_requests','checkins','rewards','chores']){ const {error}=await this.client.from(t).delete().eq('space_id',sid); if(error)throw error; }
+  }
+
+  subscribe(onChange){
+    if(!this.client||!this.space)return null; if(this.channel)this.client.removeChannel(this.channel).catch(()=>{});
+    const sid=this.space.id, ch=this.client.channel(`meal-stamp-${sid}`);
+    const tables=['checkins','rewards','reward_draws','makeup_requests','chores','chore_requests'];
+    tables.forEach(table=>ch.on('postgres_changes',{event:'*',schema:'public',table,filter:`space_id=eq.${sid}`},payload=>onChange(payload)));
+    ch.on('postgres_changes',{event:'UPDATE',schema:'public',table:'spaces',filter:`id=eq.${sid}`},payload=>onChange(payload));
+    this.channel=ch.subscribe(); return this.channel;
+  }
+}
+
+const cloud = new CloudBridge();
+(()=>{
+const isAndroid=/Android/i.test(navigator.userAgent);
+document.documentElement.classList.toggle('android',isAndroid);
+const syncVH=()=>document.documentElement.style.setProperty('--app-vh',`${window.innerHeight}px`);
+syncVH(); window.addEventListener('resize',syncVH,{passive:true});
+const BASE_LS_KEY='meal_stamp_app_v4'; let cloudReady=false, syncTimer=null, remoteReloadTimer=null;
+function cacheKey(){return cloud.space?cloud.cacheKey():BASE_LS_KEY+'_precloud'}
+function isAdmin(){return cloud.role==='admin'}
+const QUICK_ACCOUNTS={
+  admin:{label:'管理员',email:'2603329695@qq.com',masked:'2603••••695@qq.com'},
+  member:{label:'打卡用户',email:'954914196@qq.com',masked:'9549••••196@qq.com'}
+};
+const DEFAULT={settings:{targetDays:22,rewardEvery:15,demo:false,passwordHash:'',startDate:''},checkins:{},rewards:[{id:uid(),name:'奶茶一杯',enabled:true},{id:uid(),name:'按摩 20 分钟',enabled:true},{id:uid(),name:'指定一顿想吃的',enabled:true},{id:uid(),name:'免做一次家务',enabled:true}],rewardHistory:[],makeups:[],chores:[{id:uid(),name:'洗碗 + 收厨房',credit:1},{id:uid(),name:'扫地拖地',credit:1},{id:uid(),name:'整理衣物',credit:1},{id:uid(),name:'深度收纳一块区域',credit:2}],choreRequests:[]};
+let state=clone(DEFAULT); let galleryUrls=[]; let calCursor=new Date(); calCursor.setDate(1); let wheelDeg=0; let db;
+function uid(){return Math.random().toString(36).slice(2,9)+Date.now().toString(36).slice(-4)}
+function clone(o){return JSON.parse(JSON.stringify(o))}
+function load(){try{let x=JSON.parse(localStorage.getItem(cacheKey()));if(x)return Object.assign(clone(DEFAULT),x,{settings:Object.assign({},DEFAULT.settings,x.settings||{})})}catch(e){} return clone(DEFAULT)}
+function scheduleCloudSync(){if(!cloudReady)return;clearTimeout(syncTimer);syncTimer=setTimeout(()=>syncNow(),450)}
+async function syncPendingPhotos(){if(cloud.role!=='member')return;for(const [day,v] of Object.entries(state.checkins||{})){for(const meal of ['lunch','dinner']){let x=v?.[meal];if(x?.status==='onTime'&&x.photoId&&!x.photoPath){let blob=await getPhoto(x.photoId);if(blob){x.photoPath=await cloud.uploadPhoto(day,meal,x.photoId,blob)}}}}}
+function syncErrorStatus(){return navigator.onLine?'同步失败 ⚠️':'离线缓存中'}
+async function syncNow(){if(!cloudReady||!navigator.onLine){if(!navigator.onLine)setSyncStatus('离线缓存中');return}try{setSyncStatus('同步中…');await syncPendingPhotos();await cloud.syncState(state);localStorage.setItem(cacheKey(),JSON.stringify(state));setSyncStatus('已同步 ☁️')}catch(e){console.error(e);setSyncStatus(syncErrorStatus())}}
+function save(){localStorage.setItem(cacheKey(),JSON.stringify(state));renderAll();scheduleCloudSync();if(cloudReady)setTimeout(ensureStartDate,0)}
+function ymd(d=new Date()){let y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');return `${y}-${m}-${day}`}
+function ym(d=new Date()){return ymd(d).slice(0,7)}
+function fmtDate(s){let [y,m,d]=s.split('-');return `${y}.${m}.${d}`}
+function monthLabel(s){let [y,m]=s.split('-');return `${y} 年 ${+m} 月`}
+function parseYmdLocal(s){let [y,m,d]=String(s).split('-').map(Number);return new Date(y,m-1,d)}
+function addDaysLocal(s,n=1){let d=parseYmdLocal(s);d.setDate(d.getDate()+n);return ymd(d)}
+function getDay(s){return state.checkins[s]||{}}
+function mealDone(v){return !!(v&&v.status)}
+function fullDay(s){let d=getDay(s);return mealDone(d.lunch)&&mealDone(d.dinner)}
+function getMonthDays(mon){return Object.keys(state.checkins).filter(k=>k.startsWith(mon)&&fullDay(k)).length}
+function approvedChoreCredit(mon){return state.choreRequests.filter(x=>x.month===mon&&x.status==='approved').reduce((a,b)=>a+(+b.credit||0),0)}
+function effectiveMonthDays(mon){return getMonthDays(mon)+approvedChoreCredit(mon)}
+function monthState(mon){let now=ym();let n=effectiveMonthDays(mon),target=+state.settings.targetDays;if(mon>now)return {status:'future',n}; if(mon===now)return {status:n>=target?'valid':'ongoing',n}; return {status:n>=target?'valid':'invalid',n}}
+function eligibleStampDays(){let months=new Set(Object.keys(state.checkins).map(k=>k.slice(0,7)));state.choreRequests.forEach(x=>months.add(x.month));let cur=ym();months.add(cur);let sum=0; months.forEach(m=>{let ms=monthState(m); if(m===cur)sum+=getMonthDays(m); else if(ms.status==='valid')sum+=effectiveMonthDays(m)}); return sum}
+function claimed(){return state.rewardHistory.filter(x=>!x.test).length}
+function realRewardTurns(){return Math.max(0,Math.floor(eligibleStampDays()/(+state.settings.rewardEvery||15))-claimed())}
+function rewardTurns(){return state.settings.demo?Infinity:realRewardTurns()}
+function canPlayReward(){return state.settings.demo||realRewardTurns()>0}
+function streak(){let d=new Date(),n=0;while(true){let s=ymd(d);if(fullDay(s)){n++;d.setDate(d.getDate()-1)}else{if(s===ymd()) {d.setDate(d.getDate()-1);continue;} break}}return n}
+function statusLabel(v){return v?.status==='makeup'?'补签':'准时'}
+function mealWindow(meal,now=new Date()){if(state.settings.demo)return {open:true,label:'体验模式'};let min=now.getHours()*60+now.getMinutes();let [a,b]=meal==='lunch'?[720,840]:[1020,1439];return {open:min>=a&&min<=b,before:min<a,after:min>b,label:min<a?'未开始':min>b?'已结束':'可打卡'}}
+function toast(msg){let el=$('#toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2200)}
+function $(s,r=document){return r.querySelector(s)} function $$(s,r=document){return [...r.querySelectorAll(s)]}
+
+async function initDB(){db=await new Promise((res,rej)=>{let r=indexedDB.open('meal_stamp_photos',1);r.onupgradeneeded=()=>r.result.createObjectStore('photos');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});renderAll()}
+function putPhoto(id,blob){return new Promise((res,rej)=>{let tx=db.transaction('photos','readwrite');tx.objectStore('photos').put(blob,id);tx.oncomplete=res;tx.onerror=()=>rej(tx.error)})}
+function getPhoto(id){return new Promise((res,rej)=>{if(!db)return res(null);let r=db.transaction('photos').objectStore('photos').get(id);r.onsuccess=()=>res(r.result||null);r.onerror=()=>rej(r.error)})}
+function delPhoto(id){return new Promise((res)=>{if(!db||!id)return res();let tx=db.transaction('photos','readwrite');tx.objectStore('photos').delete(id);tx.oncomplete=res;tx.onerror=res})}
+async function compress(file){let bmp=await createImageBitmap(file);let max=1200,scale=Math.min(1,max/Math.max(bmp.width,bmp.height));let w=Math.max(1,Math.round(bmp.width*scale)),h=Math.max(1,Math.round(bmp.height*scale));let c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(bmp,0,0,w,h);bmp.close();return await new Promise(r=>c.toBlob(r,'image/jpeg',.72))}
+async function handleUpload(meal,file){if(isAdmin()){toast('管理员账号只负责管理和审核，请切换到打卡用户后上传照片');return}let win=mealWindow(meal);if(!win.open){toast(meal==='lunch'?'午餐只能在 12:00–14:00 打卡':'晚餐只能在 17:00–23:59 打卡');return}if(!file||!file.type.startsWith('image/')){toast('请选择图片文件');return}toast('正在压缩照片…');try{let blob=await compress(file);let id=uid();await putPhoto(id,blob);let day=ymd(),cur=getDay(day)[meal];if(cur?.photoId)await delPhoto(cur.photoId);state.checkins[day]=state.checkins[day]||{};let photoPath=null;if(cloudReady&&navigator.onLine){try{photoPath=await cloud.uploadPhoto(day,meal,id,blob)}catch(e){console.warn('photo upload queued',e)}}state.checkins[day][meal]={status:'onTime',time:new Date().toISOString(),photoId:id,photoPath,bytes:blob.size};save();toast(`打卡成功 · 已压缩到 ${Math.round(blob.size/1024)} KB${photoPath?' · 已上传云端':' · 等待同步'}`)}catch(e){console.error(e);toast('图片处理失败，请换一张试试')}}
+async function renderMeal(meal){let day=getDay(ymd()),v=day[meal],up=$('#upload-'+meal),st=$('#'+meal+'Status'),win=mealWindow(meal);if(v&&v.status){st.className='status ok';st.textContent=v.status==='makeup'?'已补签':'已完成';if(v.photoId){let blob=await getPhoto(v.photoId);if(!blob&&v.photoPath&&cloudReady&&navigator.onLine){try{blob=await cloud.downloadPhoto(v.photoPath);await putPhoto(v.photoId,blob)}catch(e){console.warn(e)}}if(blob){let url=URL.createObjectURL(blob);up.innerHTML=`<img class="photo" src="${url}"><div class="photo-over"><span>${v.status==='makeup'?'补签':'准时打卡'} · ${Math.round((v.bytes||blob.size)/1024)} KB</span>${isAdmin()?'':`<button class="btn soft" data-remove-photo="${meal}" style="padding:6px 9px">重拍</button>`}</div>`;return}}up.innerHTML=`<div class="empty"><div class="big">✅</div><b>${v.status==='makeup'?'补签已通过':'这餐已打卡'}</b><span>${v.status==='makeup'?'没有照片也会计入餐次':'照片已保存到本机'}</span></div>`} else {if(isAdmin()){st.className='status';st.textContent='仅查看';up.innerHTML=`<div class="empty"><div class="big">👀</div><b>管理员不代打卡</b><span>需要上传照片时，请使用右上角“切换用户”进入打卡用户</span></div>`;return}st.className='status '+(win.open?'open':win.after?'late':'');st.textContent=win.label;up.innerHTML=`<input type="file" accept="image/*" id="file-${meal}" aria-label="选择${meal==='lunch'?'午餐':'晚餐'}照片"><div class="empty"><div class="big">${meal==='lunch'?'📷':'📸'}</div><b>上传一张${meal==='lunch'?'午餐':'晚餐'}照片</b><span>点击或拖入图片 · 自动压缩</span><div style="margin-top:10px"><button class="btn ${meal==='lunch'?'yellow-btn':'primary'}" data-upload="${meal}" ${win.open?'':'disabled'}>选择照片</button></div></div>`;attachUpload(meal)}}
+function attachUpload(meal){let up=$('#upload-'+meal),fi=$('#file-'+meal);if(!up||!fi)return;up.onclick=e=>{if(e.target.closest('button[data-upload]'))fi.click()};fi.onchange=()=>handleUpload(meal,fi.files[0]);['dragenter','dragover'].forEach(x=>up.addEventListener(x,e=>{e.preventDefault();up.classList.add('drag')}));['dragleave','drop'].forEach(x=>up.addEventListener(x,e=>{e.preventDefault();up.classList.remove('drag')}));up.addEventListener('drop',e=>handleUpload(meal,e.dataTransfer.files[0]))}
+
+function renderToday(){let now=new Date(),day=getDay(ymd()),done=[mealDone(day.lunch),mealDone(day.dinner)].filter(Boolean).length;$('#clockPill').textContent=now.toLocaleString('zh-CN',{month:'long',day:'numeric',weekday:'short',hour:'2-digit',minute:'2-digit'});$('#todayText').textContent=`${monthLabel(ym(now))} · 完成两次上传即可盖章`;$('#dayStatusPill').textContent=`今日 ${done} / 2`;$('#statMonthDays').textContent=getMonthDays(ym());$('#statRewardTurns').textContent=state.settings.demo?'∞':realRewardTurns();$('#statStreak').textContent=streak();$('#statPending').textContent=state.makeups.filter(x=>x.status==='pending').length+state.choreRequests.filter(x=>x.status==='pending').length;let full=done===2;$('#todayStamp').textContent=full?'🌼':'🌱';$('#todayStampTitle').textContent=full?'今天的完整印章已盖好！':'今天的印章还在等你';$('#todayStampDesc').textContent=full?'午餐和晚餐都完成啦，今天计入 1 个完整集章日。':'完成午餐和晚餐打卡后，就会变成完整印章 🌼';renderMeal('lunch');renderMeal('dinner')}
+function renderCalendar(){renderPhotoGallery();let mon=ym(calCursor),year=calCursor.getFullYear(),month=calCursor.getMonth(),first=new Date(year,month,1),days=new Date(year,month+1,0).getDate(),start=(first.getDay()+6)%7;$('#monthTitle').textContent=monthLabel(mon);$('#calMonthStat').textContent=`${month+1} 月`;let ms=monthState(mon),target=+state.settings.targetDays,n=getMonthDays(mon),credit=approvedChoreCredit(mon),eff=n+credit;$('#calDaysStat').textContent=`${eff} / ${target}`;$('#calProgress').style.width=Math.min(100,eff/target*100)+'%';$('#calGapText').textContent=eff>=target?'已达到月目标 🎉':`还差 ${target-eff} 天`;$('#calChoreStat').textContent=credit;let statusMap={valid:'本月有效',invalid:'本月失效',ongoing:'本月进行中',future:'未来月份'};$('#calMonthStatus').textContent=statusMap[ms.status];let html=['一','二','三','四','五','六','日'].map(x=>`<div class="dow">周${x}</div>`).join('');for(let i=0;i<start;i++)html+='<div class="day blank"></div>';for(let d=1;d<=days;d++){let s=`${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`,v=getDay(s),l=v.lunch,r=v.dinner,full=fullDay(s);let lc=l?.status==='makeup'?'makeup':l?.status?'ok':'',rc=r?.status==='makeup'?'makeup':r?.status?'ok':'';html+=`<div class="day ${s===ymd()?'today':''}"><span class="n">${d}</span><div class="dots"><i class="dot ${lc}"></i><i class="dot ${rc}"></i></div>${full?'<span class="stamp">🌼</span>':''}<span class="mini">${full?'完整':'午 / 晚'}</span></div>`}$('#calendarGrid').innerHTML=html;renderMonthHistory()}
+
+async function renderPhotoGallery(){
+  const box=$('#photoGallery'); if(!box)return; galleryUrls.forEach(u=>URL.revokeObjectURL(u)); galleryUrls=[];
+  const items=[]; for(const day of Object.keys(state.checkins||{}).sort().reverse()){for(const meal of ['dinner','lunch']){const x=state.checkins[day]?.[meal];if(x?.photoId)items.push({day,meal,x});if(items.length>=12)break}if(items.length>=12)break}
+  if(!items.length){box.innerHTML='<div class="empty-state" style="grid-column:1/-1">还没有上传过照片 📷</div>';return}
+  box.innerHTML=items.map((it,i)=>`<div class="gallery-item" id="gallery-${i}"><div style="aspect-ratio:4/3;display:grid;place-items:center;color:var(--muted);font-size:12px">正在读取照片…</div><div class="gallery-meta"><b>${fmtDate(it.day)} · ${it.meal==='lunch'?'午餐':'晚餐'}</b>${it.x.status==='makeup'?'补签':'准时打卡'}</div></div>`).join('');
+  for(let i=0;i<items.length;i++){let {x}=items[i],blob=await getPhoto(x.photoId);if(!blob&&x.photoPath&&cloudReady&&navigator.onLine){try{blob=await cloud.downloadPhoto(x.photoPath);await putPhoto(x.photoId,blob)}catch(e){console.warn(e)}}let host=$(`#gallery-${i}`);if(blob&&host){let u=URL.createObjectURL(blob);galleryUrls.push(u);host.firstElementChild.outerHTML=`<img src="${u}" alt="${items[i].day} ${items[i].meal==='lunch'?'午餐':'晚餐'}打卡照片">`}else if(host){host.firstElementChild.textContent='照片暂未同步到本机'}}
+}
+
+function renderMonthHistory(){let months=new Set([ym()]);Object.keys(state.checkins).forEach(k=>months.add(k.slice(0,7)));state.choreRequests.forEach(x=>months.add(x.month));let arr=[...months].sort().reverse().slice(0,12);$('#monthHistory').innerHTML=arr.map(m=>{let raw=getMonthDays(m),credit=approvedChoreCredit(m),eff=raw+credit,ms=monthState(m),cl=ms.status==='valid'?'valid':ms.status==='invalid'?'invalid':'ongoing',tx=ms.status==='valid'?(credit?'补救有效':'有效'):ms.status==='invalid'?'失效':'进行中';return `<div class="month-row"><b>${monthLabel(m).replace(' 年 ','/').replace(' 月','')}</b><div><div class="bar"><i style="width:${Math.min(100,eff/state.settings.targetDays*100)}%"></i></div><small style="color:var(--muted)">${raw} 打卡${credit?` + ${credit} 家务`:''} / ${state.settings.targetDays}</small></div><span class="${cl}">${tx}</span></div>`}).join('')}
+function renderWheel(){let active=state.rewards.filter(x=>x.enabled),wheel=$('#wheel');if(!wheel)return;if(!active.length){wheel.style.background='#F3E8EC';wheel.innerHTML='';return}let colors=['#FFD85A','#FFB4CB','#BEE7D8','#C8BDF6','#FFE7A0','#FFCDD9','#CDEEDC','#D9D2FF','#FFD4A8','#F6C5E4','#BFE5F2','#D8E8AE'];let step=360/active.length,parts=active.map((r,i)=>`${colors[i%colors.length]} ${i*step}deg ${(i+1)*step}deg`);wheel.style.background=`conic-gradient(${parts.join(',')})`;let radius=active.length<=4?84:active.length<=8?91:active.length<=12?96:100;let cls=active.length>12?' very-dense':active.length>8?' dense':'';wheel.innerHTML=active.map((r,i)=>{let a=(i+.5)*step;return `<span class="wheel-label${cls}" style="transform:translate(-50%,-50%) rotate(${a}deg) translateY(-${radius}px) rotate(${-a}deg)">${esc(r.name)}</span>`}).join('')}
+function renderRewards(){let active=state.rewards.filter(x=>x.enabled),test=!!state.settings.demo;$('#rewardStampCount').textContent=eligibleStampDays();$('#claimedCount').textContent=claimed();$('#rewardTurns').textContent=test?'∞':realRewardTurns();$('#rewardPlayHint').textContent=test?'🧪 测试模式：抽奖和翻牌不限次数，测试结果不消耗正式奖励':'每次开奖消耗 1 次可用奖励';$('#rewardList').innerHTML=state.rewards.length?state.rewards.map(r=>`<div class="reward-row"><div><div class="reward-name">${esc(r.name)}</div><div class="reward-meta">${r.enabled?'已加入等概率奖池':'已停用'}</div></div>${isAdmin()?`<div class="inline"><button class="btn soft" data-toggle-reward="${r.id}" style="padding:7px 9px">${r.enabled?'停用':'启用'}</button><button class="btn danger" data-del-reward="${r.id}" style="padding:7px 9px">删除</button></div>`:''}</div>`).join(''):'<div class="empty-state">还没有奖励，先添加几个吧 🎁</div>';renderWheel();$('#spinBtn').disabled=!canPlayReward()||active.length<1;renderFlipCards();$('#rewardHistory').innerHTML=state.rewardHistory.length?state.rewardHistory.slice().reverse().map(x=>`<div class="request-item"><div><b>🎁 ${esc(x.reward)}</b><p>${new Date(x.time).toLocaleString('zh-CN')} · ${x.mode==='wheel'?'抽奖转盘':'翻牌'}${x.test?' · 测试记录':''}</p>${x.completedAt?`<div class="reward-complete-time" style="text-align:left;margin-top:5px">完成时间：${new Date(x.completedAt).toLocaleString('zh-CN')}</div>`:''}</div><div class="reward-history-actions"><span class="tag ${x.completed?'approved':x.test?'pending':'approved'}">${x.completed?'已完成':x.test?'测试':'已领取'}</span>${x.completed?'':`<button class="btn mint-btn" data-complete-reward="${x.id}" style="padding:7px 11px">完成</button>`}</div></div>`).join(''):'<div class="empty-state">还没有开奖记录，继续攒印章吧 ✨</div>'}
+function renderFlipCards(){let active=shuffle(state.rewards.filter(x=>x.enabled));let box=$('#flipCards');if(!box)return;box.innerHTML=active.length?active.map(r=>`<div class="flip ${!canPlayReward()?'disabled':''}" data-flip="${r.id}"><div class="inner"><div class="face front">💌</div><div class="face back">${esc(r.name)}</div></div></div>`).join(''):'<div class="empty-state" style="grid-column:1/-1">请先添加并启用奖励</div>'}
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function claimReward(reward,mode){if(!canPlayReward()){toast('还没有可用开奖次数');return}let test=!!state.settings.demo;state.rewardHistory.push({id:uid(),reward,time:new Date().toISOString(),mode,test,completed:false,completedAt:null});save();showResult(reward,test)}
+function completeReward(id){let item=state.rewardHistory.find(x=>x.id===id);if(!item||item.completed)return;item.completed=true;item.completedAt=new Date().toISOString();save();toast('奖励已标记完成 ✓')}
+function showResult(reward,test=false){modal(`<h3>${test?'🧪 测试抽中！':'🎉 抽中啦！'}</h3><p>${test?'本次是测试结果，不会消耗正式奖励次数。':'这次的奖励是：'}</p><div class="result">${esc(reward)}</div><div class="modal-actions"><button class="btn primary" data-close-modal>${test?'继续测试':'开心收下'}</button></div>`)}
+function spin(){let active=state.rewards.filter(x=>x.enabled);if(!active.length||!canPlayReward())return;let idx=Math.floor(Math.random()*active.length),step=360/active.length,target=360-(idx+.5)*step,current=((wheelDeg%360)+360)%360,targetNorm=((target%360)+360)%360,delta=(targetNorm-current+360)%360;wheelDeg+=1440+delta;$('#wheel').style.transform=`rotate(${wheelDeg}deg)`;$('#spinBtn').disabled=true;setTimeout(()=>claimReward(active[idx].name,'wheel'),3350)}
+
+function missedSlots(now=new Date()){if(!state.settings.startDate)return [];let start=state.settings.startDate,today=ymd(now);if(start>today)return [];let min=now.getHours()*60+now.getMinutes(),out=[];for(let s=start;s<=today;s=addDaysLocal(s,1)){for(let meal of ['lunch','dinner']){if(mealDone(getDay(s)[meal]))continue;let expired=s<today||(s===today&&min>(meal==='lunch'?840:1439));if(!expired)continue;let pending=state.makeups.find(x=>x.date===s&&x.meal===meal&&x.status==='pending');let rejected=state.makeups.some(x=>x.date===s&&x.meal===meal&&x.status==='rejected');out.push({date:s,meal,pending:!!pending,rejected})}}return out.reverse()}
+function renderMakeups(){let pending=state.makeups.filter(x=>x.status==='pending').length,slots=missedSlots(),admin=isAdmin();$('#pendingMakeupCount').textContent=`${pending} 个待审核补签`;$('#makeupStartDate').textContent=state.settings.startDate?`起始 ${fmtDate(state.settings.startDate)}`:'尚未绑定';$('#missingMakeupList').innerHTML=slots.length?slots.map(x=>`<div class="missing-item ${x.meal}"><div class="missing-main"><div class="missing-icon">${x.meal==='lunch'?'☀️':'🌙'}</div><div class="missing-copy"><b>${fmtDate(x.date)} · ${x.meal==='lunch'?'午餐':'晚餐'}待补</b><p>${x.pending?'已经提交，正在等待审核':x.rejected?'上次申请被拒绝，可重新提交':'已错过规定打卡时间，系统自动识别'}</p></div></div>${admin?'<span class="pill">仅对象可申请</span>':`<button class="btn ${x.pending?'soft':'primary'}" data-auto-makeup="${x.date}|${x.meal}" ${x.pending?'disabled':''}>${x.pending?'待审核':x.rejected?'重新补签':'确认补签'}</button>`}</div>`).join(''):`<div class="empty-state">${state.settings.startDate?'目前没有需要补签的餐次 🎉':'请先绑定初始日期'}</div>`;$('#makeupList').innerHTML=state.makeups.length?state.makeups.slice().reverse().map(x=>reqHtml(x,'makeup')).join(''):'<div class="empty-state">还没有补签申请</div>'}
+function reqHtml(x,type){let cls=x.status==='pending'?'pending':x.status==='approved'?'approved':'rejected',tx=x.status==='pending'?'待确认':x.status==='approved'?'已通过':'已拒绝';if(type==='makeup')return `<div class="request-item"><div><b>📝 ${fmtDate(x.date)} · ${x.meal==='lunch'?'午餐':'晚餐'}补签</b><p>${esc(x.reason||'没有填写说明')}<br>${new Date(x.time).toLocaleString('zh-CN')}</p></div><span class="tag ${cls}">${tx}</span></div>`;return `<div class="request-item"><div><b>🧹 ${esc(x.choreName)} · 补 ${x.credit} 天</b><p>${monthLabel(x.month)} · ${esc(x.note||'没有备注')}<br>${new Date(x.time).toLocaleString('zh-CN')}</p></div><span class="tag ${cls}">${tx}</span></div>`}
+function renderChores(){$('#choreList').innerHTML=state.chores.length?state.chores.map(x=>`<div class="chore"><div><b>${esc(x.name)}</b><br><small>折抵 ${x.credit} 天</small></div>${isAdmin()?`<button class="btn danger" data-del-chore="${x.id}" style="padding:7px 9px">删除</button>`:''}</div>`).join(''):'<div class="empty-state" style="grid-column:1/-1">还没有家务项目</div>';$('#choreSelect').innerHTML=state.chores.map(x=>`<option value="${x.id}">${esc(x.name)} · ${x.credit} 天</option>`).join('');let prev=new Date();prev.setMonth(prev.getMonth()-1);let max=ym(prev);$('#choreMonth').max=max;if(!$('#choreMonth').value)$('#choreMonth').value=max;let pending=state.choreRequests.filter(x=>x.status==='pending').length;$('#pendingChoreCount').textContent=`${pending} 个待审核家务`;$('#choreRequests').innerHTML=state.choreRequests.length?state.choreRequests.slice().reverse().map(x=>reqHtml(x,'chore')).join(''):'<div class="empty-state">还没有家务补卡记录</div>'}
+function renderSettings(){$('#targetDays').value=state.settings.targetDays;$('#rewardEvery').value=state.settings.rewardEvery;$('#demoToggle').classList.toggle('on',!!state.settings.demo);$('#settingsStartDate').textContent=state.settings.startDate?fmtDate(state.settings.startDate):'未绑定';let set=!!state.settings.passwordHash;$('#passwordSetup').style.display=set?'none':'block';$('#passwordSetState').style.display=set?'block':'none'}
+function renderAll(){renderToday();renderCalendar();renderRewards();renderMakeups();renderChores();renderSettings()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+let modalLocked=false,startDatePromptOpen=false;
+function modal(html,locked=false){modalLocked=locked;$('#modalCard').innerHTML=html;$('#modal').classList.add('show')}
+function closeModal(force=false){if(modalLocked&&!force)return;$('#modal').classList.remove('show');modalLocked=false}
+async function hash(t){let buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('')}
+async function verifyPassword(message='请输入你设置的管理密码，才能继续。'){if(!state.settings.passwordHash){toast('请先在规则设置里设置管理密码');return false}return await new Promise(resolve=>{modal(`<h3>🔐 管理员确认</h3><p>${esc(message)}</p><input class="input" id="verifyPwd" type="password" placeholder="管理密码" autofocus><div class="modal-actions"><button class="btn soft" id="verifyCancel">取消</button><button class="btn dark" id="verifyBtn">确认</button></div>`);setTimeout(()=>$('#verifyPwd')?.focus(),80);$('#verifyCancel').onclick=()=>{closeModal();resolve(false)};$('#verifyBtn').onclick=async()=>{let ok=(await hash($('#verifyPwd').value))===state.settings.passwordHash;if(ok){closeModal();resolve(true)}else{toast('密码不正确')}}})}
+function suggestedStartDate(){let keys=Object.keys(state.checkins).sort();return keys[0]||ymd()}
+function ensureStartDate(){if(!cloudReady||state.settings.startDate||startDatePromptOpen)return;if(!isAdmin()){return;}startDatePromptOpen=true;let def=suggestedStartDate();modal(`<h3>📅 第一次使用 · 绑定初始日期</h3><p>从这个日期开始，系统会每天检查午餐和晚餐是否漏打。已经错过时间窗的缺失餐次，会自动进入「补签中心」。</p><div class="field"><label>初始日期</label><input class="input" type="date" id="bindStartDate" max="${ymd()}" value="${def}"></div><div class="note" style="margin-top:10px">绑定后会作为补签识别的起点。建议选择你们正式开始执行打卡规则的那一天。</div><div class="modal-actions"><button class="btn primary" id="confirmStartDate">确认绑定</button></div>`,true);$('#confirmStartDate').onclick=()=>{let v=$('#bindStartDate').value;if(!v||v>ymd()){toast('请选择今天或更早的日期');return}state.settings.startDate=v;startDatePromptOpen=false;closeModal(true);save();toast('初始日期已绑定')}}
+async function review(type){let list=(type==='makeup'?state.makeups:state.choreRequests).filter(x=>x.status==='pending');if(!list.length){toast('没有待审核申请');return}if(!(await verifyPassword()))return;let body=list.map(x=>`<div class="request-item" style="margin:8px 0"><div><b>${type==='makeup'?`${fmtDate(x.date)} · ${x.meal==='lunch'?'午餐':'晚餐'}补签`:`${x.choreName} · ${monthLabel(x.month)} · ${x.credit}天`}</b><p>${esc(type==='makeup'?x.reason:x.note)||'无备注'}</p></div><div class="inline"><button class="btn mint-btn" data-review="approve" data-rid="${x.id}" data-type="${type}" style="padding:7px 9px">通过</button><button class="btn danger" data-review="reject" data-rid="${x.id}" data-type="${type}" style="padding:7px 9px">拒绝</button></div></div>`).join('');modal(`<h3>${type==='makeup'?'审核补签':'审核家务补卡'}</h3><p>审核结果会立即写入集章/月度数据。</p>${body}<div class="modal-actions"><button class="btn soft" data-close-modal>完成</button></div>`)}
+function applyReview(type,id,action){let arr=type==='makeup'?state.makeups:state.choreRequests,item=arr.find(x=>x.id===id);if(!item)return;item.status=action==='approve'?'approved':'rejected';item.reviewedAt=new Date().toISOString();if(type==='makeup'&&item.status==='approved'){state.checkins[item.date]=state.checkins[item.date]||{};let old=state.checkins[item.date][item.meal];if(!old?.status)state.checkins[item.date][item.meal]={status:'makeup',time:item.reviewedAt,photoId:null,bytes:0}}save();toast(action==='approve'?'已通过并计入数据':'已拒绝');setTimeout(()=>review(type),250)}
+function requestAutoMakeup(date,meal){if(isAdmin())return toast('管理员不能提交补签申请，请切换到打卡用户');if(mealDone(getDay(date)[meal]))return toast('这餐已经有记录，不需要补签');if(state.makeups.some(x=>x.date===date&&x.meal===meal&&x.status==='pending'))return toast('这餐已经在等待审核');let mealName=meal==='lunch'?'午餐':'晚餐';modal(`<h3>📝 确认补签</h3><p>系统识别到 <b>${fmtDate(date)} · ${mealName}</b> 已经错过打卡时间且没有记录。</p><div class="note">确认后只会提交申请，不会直接补上。仍需要管理员密码审核通过。</div><div class="modal-actions"><button class="btn soft" data-close-modal>取消</button><button class="btn primary" id="confirmAutoMakeup">确认申请</button></div>`);$('#confirmAutoMakeup').onclick=()=>{state.makeups.push({id:uid(),date,meal,reason:'系统自动识别漏打卡',auto:true,status:'pending',time:new Date().toISOString()});closeModal();save();toast('补签申请已提交，等待你确认')}}
+
+
+function setSyncStatus(text){let el=$('#syncPill');if(el)el.textContent=text}
+function applyRoleUI(){
+  const admin=isAdmin();
+  $('#reviewMakeupBtn').style.display=admin?'':'none';
+  $('#addReward').style.display=admin?'':'none'; $('#rewardInput').style.display=admin?'':'none';
+  $('#addChore').style.display=admin?'':'none'; $('#choreName').style.display=admin?'':'none'; $('#choreCredit').style.display=admin?'':'none';
+  $('#choreSubmitSection').style.display=admin?'none':'block'; $('#choreReviewSection').style.display=admin?'block':'none';
+  $('#choreActionTitle').textContent=admin?'家务补卡审核':'提交家务补卡';
+  $('#choreActionSub').textContent=admin?'这里只审核打卡用户提交的家务补卡申请。':'选择需要补救的月份和已完成的家务，提交后等待管理员审核。';
+  const settingsNav=$('#nav button[data-page="settings"]'); if(settingsNav)settingsNav.style.display=admin?'':'none';
+  $('#cloudRole').textContent=admin?'管理员':'对象'; $('#cloudSpaceName').textContent=cloud.space?.name||'—'; $('#cloudInvite').textContent=admin?(cloud.space?.invite_code||'—'):'仅管理员可查看';
+  renderAll();
+}
+async function reloadFromCloud(){if(!cloudReady||!navigator.onLine)return;try{let fresh=await cloud.loadState(DEFAULT);state=fresh;localStorage.setItem(cacheKey(),JSON.stringify(state));renderAll();setSyncStatus('已同步 ☁️')}catch(e){console.warn(e);setSyncStatus(syncErrorStatus())}}
+function setupRealtime(){cloud.subscribe(()=>{clearTimeout(remoteReloadTimer);remoteReloadTimer=setTimeout(reloadFromCloud,500)})}
+async function enterApp(){
+  let cached=load(); if(cached)state=cached;
+  try{state=await cloud.loadState(DEFAULT)}catch(e){console.warn('cloud load failed, using cache',e);}
+  cloudReady=true; localStorage.setItem(cacheKey(),JSON.stringify(state));
+  $('#cloudGate').style.display='none'; $('#mainApp').style.display='block'; setSyncStatus(navigator.onLine?'已连接 ☁️':'离线缓存中');
+  applyRoleUI(); setupRealtime(); setTimeout(ensureStartDate,50); syncNow();
+}
+function gateStep(name){$$('[data-gate-step]').forEach(x=>x.style.display=x.dataset.gateStep===name?'block':'none')}
+function gateMsg(msg,bad=false){let el=$('#gateMsg');el.textContent=msg;el.style.color=bad?'#B64655':'#55796C'}
+function setQuickAccount(key){let a=QUICK_ACCOUNTS[key];if(!a)return;$('#authEmail').value=a.email;$('#authPassword').value='';$$('[data-quick-account]').forEach(x=>x.classList.toggle('current',x.dataset.quickAccount===key));gateMsg(`已选择${a.label}，输入这个账号的登录密码即可。`);setTimeout(()=>$('#authPassword')?.focus(),60)}
+async function switchUser(key){let a=QUICK_ACCOUNTS[key];if(!a)return;try{await cloud.signOut()}catch(e){console.warn('signout before switch',e)}cloudReady=false;closeModal(true);$('#mainApp').style.display='none';$('#cloudGate').style.display='grid';gateStep('auth');setQuickAccount(key)}
+function openQuickSwitch(){let current=(cloud.user?.email||'').toLowerCase();modal(`<h3>⇄ 快速切换用户</h3><p>选择要切换的用户。为了不把密码写进网页，切换后只需要输入该账号密码。</p><div class="quick-account-grid"><button class="quick-account ${current===QUICK_ACCOUNTS.admin.email?'current':''}" type="button" data-switch-account="admin"><b>👑 管理员</b><span>${QUICK_ACCOUNTS.admin.masked}</span></button><button class="quick-account ${current===QUICK_ACCOUNTS.member.email?'current':''}" type="button" data-switch-account="member"><b>🍚 打卡用户</b><span>${QUICK_ACCOUNTS.member.masked}</span></button></div><div class="modal-actions"><button class="btn soft" data-close-modal>取消</button></div>`)}
+async function bootstrapCloud(){
+  $('#mainApp').style.display='none'; $('#cloudGate').style.display='grid';
+  if(!cloud.hasConfig()){gateStep('config');return}
+  try{let session=await cloud.getSession();if(!session){gateStep('auth');return}let mem=await cloud.loadMembership();if(!mem){gateStep('space');return}await enterApp()}catch(e){console.error(e);let cached=cloud.getCachedSpace();if(cloud.user&&cached){cloud.space=cached;await enterApp();setSyncStatus('离线缓存中');return}gateMsg('连接失败：'+(e.message||'请检查网络与 Supabase 配置'),true);gateStep(cloud.user?'space':'auth')}
+}
+$('#saveCloudConfig').onclick=()=>{try{cloud.setConfig($('#supabaseUrl').value,$('#supabaseKey').value);gateMsg('配置已保存，可以登录了');gateStep('auth')}catch(e){gateMsg(e.message,true)}};
+$('#changeCloudConfig').onclick=()=>gateStep('config');
+$('#loginBtn').onclick=async()=>{try{gateMsg('正在登录…');await cloud.signIn($('#authEmail').value,$('#authPassword').value);let mem=await cloud.loadMembership();if(mem)await enterApp();else gateStep('space')}catch(e){gateMsg(e.message||'登录失败',true)}};
+$('#signupBtn').onclick=async()=>{try{let d=await cloud.signUp($('#authEmail').value,$('#authPassword').value);if(d.session){let mem=await cloud.loadMembership();if(mem)await enterApp();else gateStep('space')}else gateMsg('注册成功。若项目开启了邮箱确认，请先去邮箱确认后再登录。')}catch(e){gateMsg(e.message||'注册失败',true)}};
+$('#createSpaceBtn').onclick=async()=>{try{gateMsg('正在创建情侣空间…');await cloud.createSpace($('#spaceName').value);await enterApp()}catch(e){gateMsg(e.message||'创建失败',true)}};
+$('#joinSpaceBtn').onclick=async()=>{try{gateMsg('正在加入…');await cloud.joinSpace($('#inviteCode').value);await enterApp()}catch(e){gateMsg(e.message||'加入失败',true)}};
+$('#gateSignOut').onclick=async()=>{await cloud.signOut();gateStep('auth')};
+$('#quickSwitchUser').onclick=openQuickSwitch;
+document.addEventListener('click',e=>{let q=e.target.closest('[data-quick-account]');if(q)setQuickAccount(q.dataset.quickAccount);let s=e.target.closest('[data-switch-account]');if(s)switchUser(s.dataset.switchAccount)});
+$('#cloudLogout').onclick=async()=>{await cloud.signOut();cloudReady=false;$('#mainApp').style.display='none';$('#cloudGate').style.display='grid';gateStep('auth');gateMsg('已退出当前账号，可以选择另一个用户登录。')};
+$('#cloudResetConfig').onclick=async()=>{await cloud.signOut().catch(()=>{});cloud.clearConfig();location.reload()};
+window.addEventListener('online',()=>{setSyncStatus('重新连接中…');syncNow();reloadFromCloud()}); window.addEventListener('offline',()=>setSyncStatus('离线缓存中'));
+
+// navigation
+$('#nav').addEventListener('click',e=>{let b=e.target.closest('button[data-page]');if(!b)return;$$('#nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');$$('.page').forEach(x=>x.classList.remove('active'));$('#page-'+b.dataset.page).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})});
+$('#goMakeupBtn').onclick=()=>$('#nav button[data-page="makeup"]').click();
+document.addEventListener('click',async e=>{let up=e.target.closest('[data-upload]');if(up){if(isAdmin())return toast('请切换到打卡用户后上传照片');$('#file-'+up.dataset.upload)?.click()}let rm=e.target.closest('[data-remove-photo]');if(rm){if(isAdmin())return toast('管理员不能删除或重拍对象的正常打卡');let meal=rm.dataset.removePhoto,day=ymd(),v=state.checkins[day]?.[meal];if(v?.photoId)await delPhoto(v.photoId);if(v?.photoPath&&cloudReady)try{await cloud.deletePhoto(v.photoPath)}catch(e){};if(state.checkins[day])delete state.checkins[day][meal];if(cloudReady)try{await cloud.deleteCheckin(day,meal)}catch(e){};save();toast('已移除，可以重新拍啦')}let tr=e.target.closest('[data-toggle-reward]');if(tr&&isAdmin()){let r=state.rewards.find(x=>x.id===tr.dataset.toggleReward);r.enabled=!r.enabled;save()}let dr=e.target.closest('[data-del-reward]');if(dr&&isAdmin()){state.rewards=state.rewards.filter(x=>x.id!==dr.dataset.delReward);if(cloudReady)cloud.deleteReward(dr.dataset.delReward).catch(console.error);save()}let dc=e.target.closest('[data-del-chore]');if(dc&&isAdmin()){state.chores=state.chores.filter(x=>x.id!==dc.dataset.delChore);if(cloudReady)cloud.deleteChore(dc.dataset.delChore).catch(console.error);save()}if(e.target.closest('[data-close-modal]'))closeModal();let rv=e.target.closest('[data-review]');if(rv)applyReview(rv.dataset.type,rv.dataset.rid,rv.dataset.review);let am=e.target.closest('[data-auto-makeup]');if(am&&!am.disabled){let [date,meal]=am.dataset.autoMakeup.split('|');requestAutoMakeup(date,meal)}let cr=e.target.closest('[data-complete-reward]');if(cr)completeReward(cr.dataset.completeReward)});
+$('#prevMonth').onclick=()=>{calCursor.setMonth(calCursor.getMonth()-1);renderCalendar()};$('#nextMonth').onclick=()=>{calCursor.setMonth(calCursor.getMonth()+1);renderCalendar()};$('#thisMonth').onclick=()=>{calCursor=new Date();calCursor.setDate(1);renderCalendar()};
+$('#addReward').onclick=()=>{if(!isAdmin())return toast('只有管理员可以修改奖励池');let n=$('#rewardInput').value.trim();if(!n)return toast('先写一个奖励内容');state.rewards.push({id:uid(),name:n,enabled:true});$('#rewardInput').value='';save();toast('奖励已加入奖池')};
+$('#rewardMode').onchange=()=>{let f=$('#rewardMode').value==='flip';$('#wheelPanel').style.display=f?'none':'block';$('#flipPanel').style.display=f?'block':'none';if(f)renderFlipCards()};$('#spinBtn').onclick=spin;$('#shuffleCards').onclick=renderFlipCards;
+$('#flipCards').addEventListener('click',e=>{let c=e.target.closest('[data-flip]');if(!c||c.classList.contains('open')||!canPlayReward())return;let reward=state.rewards.find(x=>x.id===c.dataset.flip);$$('.flip').forEach(x=>x.classList.add('disabled'));c.classList.remove('disabled');c.classList.add('open');setTimeout(()=>claimReward(reward.name,'flip'),650)});
+$('#reviewMakeupBtn').onclick=()=>isAdmin()?review('makeup'):toast('只有管理员可以审核');
+$('#addChore').onclick=()=>{if(!isAdmin())return toast('只有管理员可以添加家务');let n=$('#choreName').value.trim(),c=Math.max(1,+$('#choreCredit').value||1);if(!n)return toast('请输入家务名称');state.chores.push({id:uid(),name:n,credit:c});$('#choreName').value='';save();toast('家务已添加')};
+$('#submitChore').onclick=()=>{if(isAdmin())return toast('管理员不能提交家务补卡，请切换到打卡用户');let mon=$('#choreMonth').value,id=$('#choreSelect').value,note=$('#choreNote').value.trim(),ch=state.chores.find(x=>x.id===id);if(!mon||!ch)return toast('请选择月份和家务');if(mon>=ym())return toast('家务补卡用于已经结算的历史月份');state.choreRequests.push({id:uid(),month:mon,choreId:id,choreName:ch.name,credit:ch.credit,note,status:'pending',time:new Date().toISOString()});$('#choreNote').value='';save();toast('家务补卡已提交，等待审核')};$('#reviewChoreBtn').onclick=()=>isAdmin()?review('chore'):toast('只有管理员可以审核');
+$('#demoToggle').onclick=async()=>{if(!isAdmin())return toast('只有管理员可以开启测试模式');let wantOn=!state.settings.demo;if(wantOn&&!(await verifyPassword('开启测试模式需要管理员确认。开启后可无限抽奖、翻牌，并解除当天上传时间限制。')))return;state.settings.demo=wantOn;save();toast(wantOn?'测试模式已开启 · 奖励无限测试':'测试模式已关闭')};$('#saveRules').onclick=()=>{if(!isAdmin())return toast('只有管理员可以修改规则');state.settings.targetDays=Math.max(1,+$('#targetDays').value||22);state.settings.rewardEvery=Math.max(1,+$('#rewardEvery').value||15);save();toast('规则已保存')};
+$('#savePassword').onclick=async()=>{if(!isAdmin())return toast('只有管理员可以设置管理密码');if(state.settings.passwordHash)return toast('管理密码已经设置，不能直接覆盖');let a=$('#newPassword').value;if(a.length<4)return toast('密码至少 4 位');state.settings.passwordHash=await hash(a);$('#newPassword').value='';save();toast('管理密码已设置并锁定')};
+$('#resetPasswordBtn').onclick=()=>{if(!isAdmin())return toast('只有管理员可以重置密码');modal(`<h3>🔑 重置管理密码</h3><p>请输入专用重置口令后，才能重新设置管理密码。</p><input class="input" id="resetCode" type="password" placeholder="重置口令" autofocus><div class="modal-actions"><button class="btn soft" data-close-modal>取消</button><button class="btn dark" id="checkResetCode">继续</button></div>`);setTimeout(()=>$('#resetCode')?.focus(),80);$('#checkResetCode').onclick=()=>{if($('#resetCode').value!=='admin')return toast('重置口令不正确');modal(`<h3>🔐 设置新的管理密码</h3><p>只需要输入一次。保存后会再次锁定，不能直接覆盖。</p><input class="input" id="resetNewPassword" type="password" placeholder="新的管理密码 · 至少 4 位" autofocus><div class="modal-actions"><button class="btn soft" data-close-modal>取消</button><button class="btn dark" id="saveResetPassword">保存新密码</button></div>`);setTimeout(()=>$('#resetNewPassword')?.focus(),80);$('#saveResetPassword').onclick=async()=>{let p=$('#resetNewPassword').value;if(p.length<4)return toast('密码至少 4 位');state.settings.passwordHash=await hash(p);closeModal();save();toast('管理密码已重置并重新锁定')}}};
+$('#exportData').onclick=()=>{let blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`准时吃饭打卡备份_${ymd()}.json`;a.click();URL.revokeObjectURL(a.href)};
+$('#importData').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let x=JSON.parse(await f.text());state=Object.assign(clone(DEFAULT),x,{settings:Object.assign({},DEFAULT.settings,x.settings||{})});save();toast('数据已导入（照片需保留原浏览器数据）')}catch(err){toast('JSON 文件无法读取')}};
+$('#resetData').onclick=()=>modal(`<h3>真的要清空吗？</h3><p>这会删除所有打卡、奖励、补签、家务和设置。照片数据库也会一起清空。</p><div class="modal-actions"><button class="btn soft" data-close-modal>取消</button><button class="btn danger" id="confirmReset">全部清空</button></div>`);
+document.addEventListener('click',async e=>{if(e.target.id==='confirmReset'){if(!isAdmin())return toast('只有管理员可以清空数据');try{if(cloudReady)await cloud.resetSpaceData();state=clone(DEFAULT);if(db){let tx=db.transaction('photos','readwrite');tx.objectStore('photos').clear()}closeModal();save();toast('已清空云端与本地数据')}catch(err){console.error(err);toast('清空失败：'+(err.message||'未知错误'))}}});
+$('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+setInterval(()=>{renderToday()},60000);
+initDB().catch(()=>renderAll());renderAll();bootstrapCloud();
+})();
+</script>
 </body>
 </html>
