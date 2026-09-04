@@ -21,9 +21,28 @@ export class CloudBridge {
     this.space = null;
     this.role = localStorage.getItem(ROLE_KEY) || '';
     this.channel = null;
+    this._lockLoginUI();
     if (this.config?.url && this.config?.key) this._createClient();
   }
 
+_lockLoginUI(){
+    const apply = () => {
+      const signup = document.getElementById('signupBtn');
+      const changeConfig = document.getElementById('changeCloudConfig');
+      const login = document.getElementById('loginBtn');
+
+      if (signup) signup.style.display = 'none';
+      if (changeConfig) changeConfig.style.display = 'none';
+      if (login) login.style.width = '100%';
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', apply, { once:true });
+    } else {
+      apply();
+    }
+  }
+  
   _createClient(){
     this.client = createClient(this.config.url, this.config.key, {
       auth: { persistSession:true, autoRefreshToken:true, detectSessionInUrl:true },
@@ -47,7 +66,7 @@ export class CloudBridge {
     this.user=data.session?.user||null; return data.session||null;
   }
   async signIn(email,password){ const {data,error}=await this.client.auth.signInWithPassword({email:email.trim(),password}); must(data,error); this.user=data.user; return data; }
-  async signUp(email,password){ const {data,error}=await this.client.auth.signUp({email:email.trim(),password}); must(data,error); this.user=data.user; return data; }
+  async signUp(){ throw new Error('注册功能已关闭，仅允许现有账号登录。'); }
   async signOut(){ if(this.channel) await this.client.removeChannel(this.channel).catch(()=>{}); await this.client.auth.signOut(); this.user=null; this.space=null; this.role=''; localStorage.removeItem(ACTIVE_SPACE_KEY); localStorage.removeItem(ROLE_KEY); localStorage.removeItem(SPACE_META_KEY); }
 
   async loadMembership(){
